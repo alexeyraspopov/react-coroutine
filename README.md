@@ -2,7 +2,7 @@
 
 React Components as Coroutines.
 
-```jsx
+```javascript
 import React from 'react';
 import Coroutine from 'react-coroutine';
 
@@ -17,3 +17,7 @@ async function UserListContainer() {
 
 export default Coroutine.create(UserListContainer);
 ```
+
+## Install
+
+    npm install -S react-coroutine
