@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import isEqual from 'react/lib/shallowCompare';
 import invariant from 'invariant';
 
-function create(asyncFn) {
+function create(asyncFn, defaultVariables = {}) {
   const componentName = asyncFn.name || asyncFn.displayName;
 
   class AsyncComponent extends Component {
@@ -12,28 +12,29 @@ function create(asyncFn) {
 
     constructor(props) {
       super(props);
-      this.state = { body: React.createElement('noscript') };
+      this.state = { body: React.createElement('noscript'),
+                     variables: defaultVariables };
       this.forceUpdateHelper = this.forceUpdate.bind(this);
     }
 
-    forceUpdate() {
-      const additionalProps = { forceUpdate: this.forceUpdateHelper };
+    forceUpdate(variables = this.state.variables) {
+      const additionalProps = { forceUpdate: this.forceUpdateHelper, variables };
       const asyncBody = asyncFn(Object.assign(additionalProps, this.props));
 
       invariant(asyncBody instanceof Promise,
                 `${componentName} should return a Promise`);
 
       return asyncBody
-        .then(body => this.setState(() => ({ body })))
-        .catch(error => throw error);
+        .then(body => this.setState(() => ({ body, variables })))
+        .catch(error => { throw error });
     }
 
     componentDidMount() {
-      return this.forceUpdate();
+      return this.forceUpdate(this.state.variables);
     }
 
     componentWillReceiveProps(nextProps) {
-      return isEqual(nextProps, this.props) && this.forceUpdate();
+      return !isEqual(nextProps, this.props) && this.forceUpdate();
     }
 
     shouldComponentUpdate(nextProps, nextState) {
