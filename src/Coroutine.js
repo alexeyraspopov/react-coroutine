@@ -37,10 +37,6 @@ function create(asyncFn, defaultVariables = {}) {
       return !isEqual(nextProps, this.props) && this.forceUpdate();
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-      return !isEqual(nextProps, this.props) || !isEqual(nextState, this.state);
-    }
-
     render() {
       return this.state.body;
     }
