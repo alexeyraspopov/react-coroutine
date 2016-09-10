@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import isEqual from 'react/lib/shallowCompare';
 import invariant from 'invariant';
 
-function create(asyncFn, defaultVariables = {}) {
+function create(asyncFn, defaultVariables = () => ({})) {
   const componentName = asyncFn.name || asyncFn.displayName;
 
   class AsyncComponent extends Component {
@@ -13,13 +13,13 @@ function create(asyncFn, defaultVariables = {}) {
     constructor(props) {
       super(props);
       this.state = { body: React.createElement('noscript'),
-                     variables: defaultVariables };
+                     variables: defaultVariables() };
       this.forceUpdateHelper = this.forceUpdate.bind(this);
     }
 
     forceUpdate(variables = this.state.variables) {
-      const additionalProps = { forceUpdate: this.forceUpdateHelper, variables };
-      const asyncBody = asyncFn(Object.assign(additionalProps, this.props));
+      const additionalProps = { forceUpdate: this.forceUpdateHelper };
+      const asyncBody = asyncFn(Object.assign(additionalProps, variables, this.props));
 
       invariant(asyncBody instanceof Promise,
                 `${componentName} should return a Promise`);
