@@ -4,7 +4,9 @@ import Coroutine from '../src/Coroutine';
 
 describe('Coroutine', async () => {
   it('should render empty body until coroutine is resolved', async () => {
-    const render = async () => <p>test</p>;
+    async function render() {
+      return <p>test</p>;
+    }
     const TestComponent = Coroutine.create(render);
     const tree = Renderer.create(<TestComponent />);
 
@@ -16,9 +18,15 @@ describe('Coroutine', async () => {
   });
 
   it('should pass initial information', async () => {
-    const render = async ({ number }) => <p>{ number }</p>;
-    const variables = () => ({ number: 13 });
-    const TestComponent = Coroutine.create(render, variables);
+    function getVariables() {
+      return { number: 13 };
+    };
+
+    async function render({ number }) {
+      return <p>{ number }</p>;
+    }
+
+    const TestComponent = Coroutine.create(render, getVariables);
     const tree = Renderer.create(<TestComponent />);
 
     const success = await Renderer.create(<p>{13}</p>);
