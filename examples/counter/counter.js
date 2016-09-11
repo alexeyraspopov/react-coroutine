@@ -2,7 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Coroutine from '../../src/Coroutine';
 
-async function Counter({ counter, forceUpdate }) {
+function getVariables() {
+  return { counter: 0 };
+}
+
+async function Counter({ name, counter, forceUpdate }) {
   return (
     <section>
       <button onClick={() => forceUpdate({ counter: counter + 1 })}>
@@ -10,12 +14,12 @@ async function Counter({ counter, forceUpdate }) {
       </button>
 
       <output>
-        {counter}
+        {name}: {counter}
       </output>
     </section>
   );
 }
 
-const CounterCo = Coroutine.create(Counter, () => ({ counter: 0 }));
+const CounterCo = Coroutine.create(Counter, getVariables);
 
-ReactDOM.render(<CounterCo />, document.querySelector('main'));
+ReactDOM.render(<CounterCo name="Things count" />, document.querySelector('main'));
