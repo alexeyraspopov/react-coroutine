@@ -24,4 +24,28 @@ describe('Coroutine', async () => {
     const success = await Renderer.create(<p>{13}</p>);
     expect(tree.toJSON()).toEqual(success.toJSON());
   });
+
+  it('should re-render the component if variables are updated', async () => {
+    function getVariables() {
+      return { number: 0 };
+    }
+
+    async function render({ number, forceUpdate }) {
+      try {
+        return <p>{ number }</p>;
+      } finally {
+        await true;
+        if (number === 0) forceUpdate({ number: 1 });
+      }
+    }
+
+    const TestComponent = Coroutine.create(render, getVariables);
+    const tree = await Renderer.create(<TestComponent />);
+
+    const success = await Renderer.create(<p>{0}</p>);
+    expect(tree.toJSON()).toEqual(success.toJSON());
+
+    const updated = await Renderer.create(<p>{1}</p>);
+    expect(tree.toJSON()).toEqual(updated.toJSON());
+  });
 });
