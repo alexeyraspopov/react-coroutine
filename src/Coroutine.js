@@ -7,7 +7,7 @@ function create(asyncFn, defaultVariables = () => ({})) {
 
   class AsyncComponent extends Component {
     static get displayName() {
-      return `Async(${componentName})`;
+      return `Coroutine(${componentName})`;
     }
 
     constructor(props) {
