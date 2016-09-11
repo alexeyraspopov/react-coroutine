@@ -21,8 +21,8 @@ function create(asyncFn, defaultVariables = () => ({})) {
       const additionalProps = { forceUpdate: this.forceUpdateHelper };
       const asyncBody = asyncFn(Object.assign(additionalProps, variables, this.props));
 
-      invariant(asyncBody instanceof Promise,
-                `${componentName} should return a Promise`);
+      invariant(asyncBody instanceof Promise || asyncBody[Symbol.iterator]() === asyncBody,
+                `${componentName} should return a Promise or Iterator`);
 
       return asyncBody
         .then(body => this.setState(() => ({ body, variables })))
