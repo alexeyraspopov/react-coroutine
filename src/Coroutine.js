@@ -5,7 +5,7 @@ import invariant from 'invariant';
 function create(asyncFn, defaultVariables = () => ({})) {
   const componentName = asyncFn.name || asyncFn.displayName;
 
-  class AsyncComponent extends Component {
+  return class AsyncComponent extends Component {
     static get displayName() {
       return `Coroutine(${componentName})`;
     }
@@ -41,8 +41,6 @@ function create(asyncFn, defaultVariables = () => ({})) {
       return this.state.body;
     }
   }
-
-  return AsyncComponent;
 }
 
 export default { create };

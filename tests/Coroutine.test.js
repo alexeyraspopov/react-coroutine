@@ -7,6 +7,7 @@ describe('Coroutine', async () => {
     async function render() {
       return <p>test</p>;
     }
+
     const TestComponent = Coroutine.create(render);
     const tree = Renderer.create(<TestComponent />);
 
@@ -20,7 +21,7 @@ describe('Coroutine', async () => {
   it('should pass initial information', async () => {
     function getVariables() {
       return { number: 13 };
-    };
+    }
 
     async function render({ number }) {
       return <p>{ number }</p>;
