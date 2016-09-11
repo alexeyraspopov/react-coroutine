@@ -31,5 +31,12 @@
     "babel-preset-react": "~6.11.1",
     "jest-cli": "~15.1.1",
     "react-test-renderer": "~15.3.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "es2017",
+      "react"
+    ]
   }
 }
