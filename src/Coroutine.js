@@ -25,8 +25,7 @@ function create(asyncFn, defaultVariables = () => ({})) {
                 `${componentName} should return a Promise or Iterator`);
 
       return asyncBody
-        .then(body => this.setState(() => ({ body, variables })))
-        .catch(error => { throw error });
+        .then(body => this.setState(() => ({ body, variables })));
     }
 
     componentDidMount() {
