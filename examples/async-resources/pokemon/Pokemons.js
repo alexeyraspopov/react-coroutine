@@ -1,13 +1,14 @@
 import { PokemonListLoader, PokemonLoader } from './PokemonLoader';
 import { Pokemon } from './PokemonRecord';
-import { List } from 'immutable';
+import { Map } from 'immutable';
 
 class Pokemons {
   async retrieve(offset = 0, limit = 20) {
     const { results } = await PokemonListLoader.load([offset, limit]);
     const pokemons = await PokemonLoader.loadMany(results.map(data => data.name));
+    const entries = pokemons.map(data => [data.name, new Pokemon(data)]);
 
-    return new List(pokemons.map(data => new Pokemon(data))).toMap().mapKeys((k, v) => v.name);
+    return new Map(entries);
   }
 }
 
