@@ -6,7 +6,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react-coroutine': '../../'
+      'react-coroutine': '../../../'
     }
   }
 }

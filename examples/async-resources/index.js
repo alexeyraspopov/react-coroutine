@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Coroutine from 'react-coroutine';
+import PokemonList from './pokemon/PokemonList.react';
 
-ReactDOM.render(<h1>hello</h1>, document.querySelector('main'));
+ReactDOM.render(<PokemonList />, document.querySelector('main'));
