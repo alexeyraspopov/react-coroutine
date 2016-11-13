@@ -17,15 +17,21 @@ function create(asyncFn, defaultVariables = () => ({})) {
       this.forceUpdateHelper = this.forceUpdate.bind(this);
     }
 
-    forceUpdate(variables = this.state.variables) {
+    async forceUpdate(variables = this.state.variables) {
       const additionalProps = { forceUpdate: this.forceUpdateHelper };
       const asyncBody = asyncFn(Object.assign(additionalProps, variables, this.props));
 
-      invariant(asyncBody instanceof Promise || asyncBody[Symbol.iterator]() === asyncBody,
-                `${componentName} should return a Promise or Iterator`);
+      invariant(asyncBody instanceof Promise || asyncBody[Symbol.asyncIterator]() === asyncBody,
+                `${componentName} should return a Promise or AsyncIterator`);
 
-      return asyncBody
-        .then(body => this.setState(() => ({ body, variables })));
+      if (asyncBody instanceof Promise) {
+        const body = await asyncBody;
+        this.setState(() => ({ body, variables }));
+      } else {
+        for await (const body of asyncBody) {
+          this.setState(() => ({ body, variables }));
+        }
+      }
     }
 
     componentDidMount() {
