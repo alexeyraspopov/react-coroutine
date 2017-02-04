@@ -28,9 +28,15 @@ function create(asyncFn, defaultVariables = () => ({})) {
         const body = await asyncBody;
         this.setState(() => ({ body, variables }));
       } else {
-        for await (const body of asyncBody) {
-          this.setState(() => ({ body, variables }));
-        }
+        const getNextBody = async () => {
+          const body = await asyncBody.next();
+          if (!body.done) {
+            this.setState(() => ({ body: body.value, variables }));
+            return getNextBody();
+          }
+        };
+
+        getNextBody();
       }
     }
 
