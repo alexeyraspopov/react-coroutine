@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import isEqual from 'react/lib/shallowCompare';
-import invariant from 'invariant';
 
 function create(asyncFn, defaultVariables = () => ({})) {
   const componentName = asyncFn.name || asyncFn.displayName;
@@ -13,16 +12,13 @@ function create(asyncFn, defaultVariables = () => ({})) {
     constructor(props) {
       super(props);
       this.state = { body: React.createElement('noscript'),
-                     variables: defaultVariables() };
+                     variables: defaultVariables(/* props, context */) };
       this.forceUpdateHelper = this.forceUpdate.bind(this);
     }
 
     async forceUpdate(variables = this.state.variables) {
       const additionalProps = { forceUpdate: this.forceUpdateHelper };
       const asyncBody = asyncFn(Object.assign(additionalProps, variables, this.props));
-
-      invariant(asyncBody instanceof Promise || asyncBody[Symbol.asyncIterator]() === asyncBody,
-                `${componentName} should return a Promise or AsyncIterator`);
 
       if (asyncBody instanceof Promise) {
         const body = await asyncBody;

@@ -1,3 +1,7 @@
+## react-coroutine v0.3.0
+
+ * Remove `invariant` dependency
+
 ## react-coroutine v0.2.0
 
  * Set correct and transpiled main file

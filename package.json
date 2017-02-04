@@ -20,7 +20,6 @@
   "author": "Alexey Raspopov",
   "license": "MIT",
   "dependencies": {
-    "invariant": "*",
     "react": "15.x"
   },
   "devDependencies": {
