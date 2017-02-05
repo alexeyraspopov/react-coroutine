@@ -13,6 +13,7 @@ function create(asyncFn, getVariables = () => ({})) {
       super(props, context);
       this.state = { body: React.createElement('noscript'),
                      variables: getVariables(props, context) };
+      this.iterator = null;
       this.forceUpdateHelper = this.forceUpdate.bind(this);
     }
 
@@ -25,9 +26,12 @@ function create(asyncFn, getVariables = () => ({})) {
           this.setState(() => ({ body, variables }));
         });
       } else {
+        this.iterator = asyncBody;
         const getNextBody = () => {
           asyncBody.next().then((body) => {
-            if (!body.done) {
+            if (body.done) {
+              this.iterator = null;
+            } else {
               this.setState(() => ({ body: body.value, variables }));
               return getNextBody();
             }
@@ -43,7 +47,21 @@ function create(asyncFn, getVariables = () => ({})) {
     }
 
     componentWillReceiveProps(nextProps) {
-      return !isEqual(nextProps, this.props) && this.forceUpdate();
+      if (!isEqual(nextProps, this.props)) {
+        if (this.iterator) {
+          this.iterator.return();
+          this.iterator = null;
+        }
+
+        this.forceUpdate();
+      }
+    }
+
+    componentWillUnmount() {
+      if (this.iterator) {
+        this.iterator.return();
+        this.iterator = null;
+      }
     }
 
     render() {
