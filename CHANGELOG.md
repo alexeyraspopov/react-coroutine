@@ -1,6 +1,7 @@
 ## react-coroutine v0.3.0
 
- * Remove `invariant` dependency
+ * Removed `invariant` dependency
+ * Call `getVariables()` with `props` and `context` passed in
 
 ## react-coroutine v0.2.0
 

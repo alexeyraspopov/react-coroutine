@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import isEqual from 'react/lib/shallowCompare';
 
-function create(asyncFn, defaultVariables = () => ({})) {
+function create(asyncFn, getVariables = () => ({})) {
   const componentName = asyncFn.name || asyncFn.displayName;
 
   return class AsyncComponent extends Component {
@@ -9,10 +9,10 @@ function create(asyncFn, defaultVariables = () => ({})) {
       return `Coroutine(${componentName})`;
     }
 
-    constructor(props) {
-      super(props);
+    constructor(props, context) {
+      super(props, context);
       this.state = { body: React.createElement('noscript'),
-                     variables: defaultVariables(/* props, context */) };
+                     variables: getVariables(props, context) };
       this.forceUpdateHelper = this.forceUpdate.bind(this);
     }
 
@@ -37,7 +37,7 @@ function create(asyncFn, defaultVariables = () => ({})) {
     }
 
     componentDidMount() {
-      return this.forceUpdate(this.state.variables);
+      return this.forceUpdate();
     }
 
     componentWillReceiveProps(nextProps) {
