@@ -2,6 +2,7 @@
 
  * Removed `invariant` dependency
  * Call `getVariables()` with `props` and `context` passed in
+ * Allowed the usage of async generators as components
 
 ## react-coroutine v0.2.0
 

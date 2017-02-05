@@ -57,4 +57,21 @@ describe('Coroutine', async () => {
     const updated = await Renderer.create(<p>{1}</p>);
     expect(tree.toJSON()).toEqual(updated.toJSON());
   });
+
+  it('should render each step of async iterator', async () => {
+    async function* render() {
+      yield <p>Loading...</p>;
+      await Promise.resolve();
+      yield <p>Done!</p>;
+    }
+
+    const TestComponent = Coroutine.create(render);
+    const tree = await Renderer.create(<TestComponent />);
+
+    const first = await Renderer.create(<p>Loading...</p>);
+    expect(tree.toJSON()).toEqual(first.toJSON());
+
+    const second = await Renderer.create(<p>Done!</p>);
+    expect(tree.toJSON()).toEqual(second.toJSON());
+  });
 });
