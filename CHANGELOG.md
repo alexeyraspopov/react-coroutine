@@ -1,3 +1,7 @@
+## react-coroutine v0.3.1
+
+ * Cancel async iterator when a component was unmounted or received new props
+
 ## react-coroutine v0.3.0
 
  * Removed `invariant` dependency
