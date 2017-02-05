@@ -16,20 +16,22 @@ function create(asyncFn, getVariables = () => ({})) {
       this.forceUpdateHelper = this.forceUpdate.bind(this);
     }
 
-    async forceUpdate(variables = this.state.variables) {
+    forceUpdate(variables = this.state.variables) {
       const additionalProps = { forceUpdate: this.forceUpdateHelper };
       const asyncBody = asyncFn(Object.assign(additionalProps, variables, this.props));
 
       if (asyncBody instanceof Promise) {
-        const body = await asyncBody;
-        this.setState(() => ({ body, variables }));
+        asyncBody.then(body => {
+          this.setState(() => ({ body, variables }));
+        });
       } else {
-        const getNextBody = async () => {
-          const body = await asyncBody.next();
-          if (!body.done) {
-            this.setState(() => ({ body: body.value, variables }));
-            return getNextBody();
-          }
+        const getNextBody = () => {
+          asyncBody.next().then((body) => {
+            if (!body.done) {
+              this.setState(() => ({ body: body.value, variables }));
+              return getNextBody();
+            }
+          });
         };
 
         getNextBody();
