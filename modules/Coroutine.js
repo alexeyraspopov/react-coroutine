@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import isEqual from 'react/lib/shallowCompare';
+import shallowCompare from 'react/lib/shallowCompare';
 
 function create(asyncFn, getVariables = () => ({})) {
   const componentName = asyncFn.name || asyncFn.displayName;
@@ -47,7 +47,7 @@ function create(asyncFn, getVariables = () => ({})) {
     }
 
     componentWillReceiveProps(nextProps) {
-      if (!isEqual(nextProps, this.props)) {
+      if (shallowCompare(this, nextProps)) {
         if (this.iterator) {
           this.iterator.return();
           this.iterator = null;

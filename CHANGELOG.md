@@ -1,3 +1,7 @@
+## react-coroutine v0.3.2
+
+ * Fixed incorrect props comparison
+
 ## react-coroutine v0.3.1
 
  * Cancel async iterator when a component was unmounted or received new props
