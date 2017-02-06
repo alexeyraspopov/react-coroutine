@@ -17,9 +17,9 @@ function create(asyncFn, getVariables = () => ({})) {
       this.forceUpdateHelper = this.forceUpdate.bind(this);
     }
 
-    forceUpdate(variables = this.state.variables) {
+    forceUpdate(variables = this.state.variables, props = this.props) {
       const additionalProps = { forceUpdate: this.forceUpdateHelper };
-      const asyncBody = asyncFn(Object.assign(additionalProps, variables, this.props));
+      const asyncBody = asyncFn(Object.assign(additionalProps, variables, props));
 
       if (asyncBody instanceof Promise) {
         asyncBody.then(body => {
@@ -53,7 +53,7 @@ function create(asyncFn, getVariables = () => ({})) {
           this.iterator = null;
         }
 
-        this.forceUpdate();
+        this.forceUpdate(this.state.variables, nextProps);
       }
     }
 

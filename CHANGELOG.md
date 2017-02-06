@@ -1,6 +1,7 @@
 ## react-coroutine v0.3.2
 
  * Fixed incorrect props comparison
+ * Fixed re-render logic when new props are received
 
 ## react-coroutine v0.3.1
 
