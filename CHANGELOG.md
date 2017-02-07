@@ -1,3 +1,7 @@
+## react-coroutine v0.4.0
+
+ * Drop outdated body before fetching new one
+
 ## react-coroutine v0.3.2
 
  * Fixed incorrect props comparison

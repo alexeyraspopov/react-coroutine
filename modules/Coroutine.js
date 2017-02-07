@@ -21,6 +21,8 @@ function create(asyncFn, getVariables = () => ({})) {
       const additionalProps = { forceUpdate: this.forceUpdateHelper };
       const asyncBody = asyncFn(Object.assign(additionalProps, variables, props));
 
+      this.setState(() => ({ body: React.createElement('noscript'), variables }));
+
       if (asyncBody instanceof Promise) {
         asyncBody.then(body => {
           this.setState(() => ({ body, variables }));
