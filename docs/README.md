@@ -1,6 +1,13 @@
 # React Coroutine
 
-Small library which leverage the power of modern JavaScript to provide seamless way in creating stateful components with different purposes.
+Small library which leverages the power of modern JavaScript to provide seamless way in creating stateful components with different purposes.
+
+## Why
+
+In the world full of APIs, we starting to forget the power of plain JavaScript and how essential patterns eliminate the need in providing new abstractions.
+
+This project tends to use the simplicity of functional React components and the essential mechanism of coroutines to create stateful components with colocation.
+
 
 ```javascript
 import React from 'react';
