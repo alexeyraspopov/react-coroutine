@@ -2,9 +2,14 @@
 
 Small library which leverages the power of modern JavaScript to provide seamless way in creating stateful components with different purposes.
 
+> **Coroutines** are computer program components that generalize subroutines for nonpreemptive multitasking, by allowing multiple entry points for suspending and resuming execution at certain locations. Coroutines are well-suited for implementing more familiar program components such as cooperative tasks, exceptions, event loop, iterators, infinite lists and pipes.  
+> — _[Wikipedia](https://en.wikipedia.org/wiki/Coroutine)_
+
 ## Why
 
 In the world full of APIs, we starting to forget the power of plain JavaScript and how essential patterns eliminate the need in providing new abstractions.
+
+The power of coroutines allows to write code in synchronous style and be able to pause it or partially postpone its execution. This essential idea brought us [Async Functions](https://github.com/tc39/ecmascript-asyncawait) which are already included in the language.
 
 This project tends to use the simplicity of functional React components and the essential mechanism of coroutines to create stateful components with colocation.
 
@@ -36,7 +41,7 @@ async function PostListCo() {
 export default Coroutine.create(PostListCo);
 ```
 
-### Dependency injection
+### Dependency Injection
 
 For the sake of testability you might want to inject instances into your coroutine in the way how React `props` are provided.
 
