@@ -8,6 +8,7 @@ In the world full of APIs, we starting to forget the power of plain JavaScript a
 
 This project tends to use the simplicity of functional React components and the essential mechanism of coroutines to create stateful components with colocation.
 
+## Usage
 
 ```javascript
 import React from 'react';
@@ -18,13 +19,44 @@ import PostList from 'PostList.react';
 async function PostListCo() {
   try {
     const posts = await Posts.retrieve();
-    return <PostList posts={posts} />;
+    return <PostList posts={posts} />
   } catch (error) {
-    return <p>Unable to fetch posts.</p>;
+    return <p>Unable to fetch posts.</p>
   }
 }
 
 export default Coroutine.create(PostListCo);
+```
+
+### Dependency injection
+
+For the sake of testability you might want to inject instances into your coroutine in the way how React `props` are provided.
+
+You are able to provide `getVariables()` function that receives `props` and `context` and returns an object that will be passed in a coroutine.
+
+```javascript
+function getVariables(props) {
+  return {
+    postsLoader: new PostsLoader(props.userId)
+  };
+}
+
+async function PostListCo({ postsLoader }) {
+  try {
+    const posts = await postsLoader.retrieve();
+    return <PostList posts={posts} />
+  } catch (error) {
+    return <p>Unable to fetch posts.</p>
+  }
+}
+
+export default Coroutine.create(PostListCo, getVariables);
+```
+
+In the example above, the result component receives `userId` property and uses it to provide a loader to the coroutine.
+
+```html
+<PostListCo userId={...} />
 ```
 
 ## Testing
