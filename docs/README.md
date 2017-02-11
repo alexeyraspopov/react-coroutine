@@ -10,7 +10,7 @@ This project tends to use the simplicity of functional React components and the 
 
 ## Usage
 
-```javascript
+```jsx
 import React from 'react';
 import Coroutine from 'react-coroutine';
 import Posts from 'PostAPI';
@@ -19,9 +19,9 @@ import PostList from 'PostList.react';
 async function PostListCo() {
   try {
     const posts = await Posts.retrieve();
-    return <PostList posts={posts} />
+    return <PostList posts={posts} />;
   } catch (error) {
-    return <p>Unable to fetch posts.</p>
+    return <p>Unable to fetch posts.</p>;
   }
 }
 
@@ -34,19 +34,19 @@ For the sake of testability you might want to inject instances into your corouti
 
 You are able to provide `getVariables()` function that receives `props` and `context` and returns an object that will be passed in a coroutine.
 
-```javascript
+```jsx
 function getVariables(props) {
   return {
-    postsLoader: new PostsLoader(props.userId)
+    userPosts: new PostsDAO(props.userId)
   };
 }
 
-async function PostListCo({ postsLoader }) {
+async function PostListCo({ userPosts }) {
   try {
-    const posts = await postsLoader.retrieve();
-    return <PostList posts={posts} />
+    const posts = await userPosts.retrieve();
+    return <PostList posts={posts} />;
   } catch (error) {
-    return <p>Unable to fetch posts.</p>
+    return <p>Unable to fetch posts.</p>;
   }
 }
 
