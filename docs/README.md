@@ -19,3 +19,7 @@ async function PostListCo() {
 
 export default Coroutine.create(PostListCo);
 ```
+
+## Testing
+
+Please read the [testing guide](./Testing.md).
