@@ -8,6 +8,14 @@ In the world full of APIs, we starting to forget the power of plain JavaScript a
 
 This project tends to use the simplicity of functional React components and the essential mechanism of coroutines to create stateful components with colocation.
 
+## Install
+
+`react-coroutine` is [available](https://www.npmjs.com/package/react-coroutine) in NPM registry and can be installed both via [NPM](https://www.npmjs.com/) and [Yarn](https://yarnpkg.com/).
+
+```
+npm install react-coroutine
+```
+
 ## Usage
 
 ```javascript
