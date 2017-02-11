@@ -1,5 +1,3 @@
-# React Coroutine
-
 Small library which leverages the power of modern JavaScript to provide seamless way in creating stateful components with different purposes.
 
 > **Coroutines** are computer program components that generalize subroutines for nonpreemptive multitasking, by allowing multiple entry points for suspending and resuming execution at certain locations. Coroutines are well-suited for implementing more familiar program components such as cooperative tasks, exceptions, event loop, iterators, infinite lists and pipes.  
@@ -92,20 +90,24 @@ In the example above, the result component receives `userId` property and uses i
 
 [Asynchronous Iterators](https://github.com/tc39/proposal-async-iteration) are in [Stage 3](https://github.com/tc39/proposals) and soon will be added to the language. However, you might want to try them right now, using [Babel](https://babeljs.io/) or [async-to-gen](https://github.com/leebyron/async-to-gen).
 
+You can use async iterators for providing more than one step of rendering. For example, it can be loading spinner that is rendered immediately and once data is fetched, necessary component replaces the spinner.
+
 ```javascript
-async function* CommentListContainer() {
+async function* SearchResultsContainer({ query }) {
   yield <LoadingSpinner />;
 
   try {
-    const comments = await CommentsDAO.retrieve();
-    return <CommentList comments={comments} />;
+    const results = await SearchDAO.retrieve(query);
+    return <SearchResults results={results} />;
   } catch (error) {
     return <ErrorMessage error={error} />;
   }
 }
 
-export default Coroutine.create(CommentListContainer);
+export default Coroutine.create(SearchResultsContainer);
 ```
+
+Also, you might have a component that needs a data from different sources but can be rendered progressively.
 
 ```javascript
 async function* List() {
