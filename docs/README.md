@@ -10,7 +10,7 @@ This project tends to use the simplicity of functional React components and the 
 
 ## Usage
 
-```jsx
+```javascript
 import React from 'react';
 import Coroutine from 'react-coroutine';
 import Posts from 'PostAPI';
@@ -34,7 +34,7 @@ For the sake of testability you might want to inject instances into your corouti
 
 You are able to provide `getVariables()` function that receives `props` and `context` and returns an object that will be passed in a coroutine.
 
-```jsx
+```javascript
 function getVariables(props) {
   return {
     userPosts: new PostsDAO(props.userId)
