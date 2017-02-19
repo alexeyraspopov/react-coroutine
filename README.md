@@ -29,5 +29,11 @@ export default Coroutine.create(UserListContainer);
 
 See [docs](./docs/) for more.
 
+## List of projects that can be built with react-coroutine
 
+React Coroutine attempts to use basic language features for the sake of solving problems that are usually solved with APIs and new abstractions that require particular knowledge about themselves and sometimes about internal processes (leaky abstractions).
 
+ * [react-refetch](https://github.com/heroku/react-refetch)
+ * [react-transmit](https://github.com/RickWong/react-transmit)
+ * [smalldots](https://github.com/smalldots/smalldots)
+ * [react-controller](https://github.com/bradestey/react-controller)
