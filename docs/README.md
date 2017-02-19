@@ -124,6 +124,18 @@ async function* List() {
 export default Coroutine.create(List);
 ```
 
+Async iterators allow you to yield new UI pieces over the time, without the need to re-render a component by parent element.
+
+```javascript
+async function* EventStreamContainer() {
+  for await (const message of dispatcher) {
+    yield <p>Last message {message.type}</p>;
+  }
+}
+
+export default Coroutine.create(EventStreamContainer);
+```
+
 ## Testing
 
 Please read the [testing guide](./Testing.md).
