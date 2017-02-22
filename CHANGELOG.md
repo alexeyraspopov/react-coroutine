@@ -1,3 +1,7 @@
+## react-coroutine v0.5.0
+
+ * Use a better approach to check if component is mounted
+
 ## react-coroutine v0.4.1
 
  * Fixed weird publish issue
