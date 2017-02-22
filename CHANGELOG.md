@@ -1,3 +1,7 @@
+## react-coroutine v0.4.1
+
+ * Fixed weird publish issue
+
 ## react-coroutine v0.4.0
 
  * Drop outdated body before fetching new one
