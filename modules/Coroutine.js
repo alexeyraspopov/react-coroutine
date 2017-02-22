@@ -15,13 +15,12 @@ function create(asyncFn, getVariables = () => ({})) {
                      variables: getVariables(props, context) };
       this.iterator = null;
       this.forceUpdateHelper = this.forceUpdate.bind(this);
+      this.isComponentMounted = false;
     }
 
     forceUpdate(variables = this.state.variables, props = this.props) {
       const additionalProps = { forceUpdate: this.forceUpdateHelper };
       const asyncBody = asyncFn(Object.assign(additionalProps, variables, props));
-
-      this.setState(() => ({ body: React.createElement('noscript'), variables }));
 
       if (asyncBody instanceof Promise) {
         asyncBody.then(body => {
@@ -45,6 +44,7 @@ function create(asyncFn, getVariables = () => ({})) {
     }
 
     componentDidMount() {
+      this.isComponentMounted = true;
       return this.forceUpdate();
     }
 
@@ -55,7 +55,9 @@ function create(asyncFn, getVariables = () => ({})) {
           this.iterator = null;
         }
 
-        this.forceUpdate(this.state.variables, nextProps);
+        if (this.isComponentMounted) {
+          this.forceUpdate(this.state.variables, nextProps);
+        }
       }
     }
 
@@ -64,6 +66,8 @@ function create(asyncFn, getVariables = () => ({})) {
         this.iterator.return();
         this.iterator = null;
       }
+
+      this.isComponentMounted = false;
     }
 
     render() {
