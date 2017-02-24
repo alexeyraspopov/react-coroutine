@@ -1,0 +1,35 @@
+{
+  "name": "boilerplate",
+  "version": "0.0.1",
+  "description": "React app",
+  "main": "index.js",
+  "dependencies": {
+    "react": "~15.4.2",
+    "react-coroutine": "~0.5.1",
+    "react-dom": "~15.4.2",
+    "react-router": "~3.0.2"
+  },
+  "devDependencies": {
+    "babel-core": "~6.23.1",
+    "babel-loader": "~6.3.2",
+    "babel-preset-es2017": "~6.22.0",
+    "babel-preset-react": "~6.23.0",
+    "babel-preset-stage-2": "~6.22.0",
+    "http-server": "~0.9.0",
+    "uglify-js": "github:mishoo/uglifyjs2#harmony",
+    "webpack": "~2.2.1",
+    "webpack-dev-server": "~2.4.1"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "es2017",
+      "stage-2"
+    ]
+  },
+  "scripts": {
+    "build": "NODE_ENV=production webpack index.js bundle.js -p",
+    "serve": "http-server . -p 8080",
+    "start": "NODE_ENV=development webpack-dev-server ."
+  }
+}
