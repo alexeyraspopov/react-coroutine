@@ -9,3 +9,6 @@ React Coroutine used for code splitting.
     npm install
     npm start
 
+## Code
+
+Please read [`modules/Routes.js`](./modules/Routes.js) for the explanation of this example.
