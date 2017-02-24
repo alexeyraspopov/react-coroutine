@@ -30,7 +30,7 @@ function create(asyncFn, getVariables = () => ({})) {
         this.iterator = asyncBody;
         const getNextBody = () => {
           asyncBody.next().then((body) => {
-            if (body.done) {
+            if (body.done && typeof body.value === 'undefined') {
               this.iterator = null;
             } else {
               this.setState(() => ({ body: body.value, variables }));

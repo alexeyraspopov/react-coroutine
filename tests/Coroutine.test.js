@@ -62,7 +62,7 @@ describe('Coroutine', async () => {
     async function* render() {
       yield <p>Loading...</p>;
       await Promise.resolve();
-      yield <p>Done!</p>;
+      return <p>Done!</p>;
     }
 
     const TestComponent = Coroutine.create(render);

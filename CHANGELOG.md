@@ -1,3 +1,7 @@
+## react-coroutine v0.5.1
+
+ * Fix `return` statement usage in async generators
+
 ## react-coroutine v0.5.0
 
  * Use a better approach to check if component is mounted

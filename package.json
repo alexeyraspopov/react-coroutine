@@ -1,6 +1,6 @@
 {
   "name": "react-coroutine",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "React Components as Coroutines",
   "main": "lib/Coroutine.js",
   "scripts": {
