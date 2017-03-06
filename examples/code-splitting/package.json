@@ -1,7 +1,7 @@
 {
-  "name": "boilerplate",
+  "name": "code-splitting",
   "version": "0.0.1",
-  "description": "React app",
+  "description": "Code splitting example with React Coroutine",
   "main": "index.js",
   "dependencies": {
     "react": "~15.4.2",
