@@ -28,8 +28,8 @@
     ]
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack index.js bundle.js -p",
+    "build": "webpack index.js bundle.js -p",
     "serve": "http-server . -p 8080",
-    "start": "NODE_ENV=development webpack-dev-server ."
+    "start": "webpack-dev-server . -d"
   }
 }
