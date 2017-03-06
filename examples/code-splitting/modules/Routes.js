@@ -18,13 +18,9 @@ export default (
 /* Async function that is used as a component and provides
    actual `PokemonList` once it becomes imported via async `import()`. */
 async function PokemonListLoader() {
-  /* You might wonder why it doesn't writtent in the way `await import()`.
-     Well, that will be fixed once https://github.com/webpack/webpack/issues/3925
-     is fixed. */
-  const module = import('./PokemonList');
   /* Module is an object that keeps all exports from particular file.
      You can think about the result as `import * as module from '...'`.*/
-  const { default: PokemonList } = await module;
+  const { default: PokemonList } = await import('./PokemonList');
   return <PokemonList />;
 }
 
@@ -37,7 +33,7 @@ async function* PokemonInfoLoader({ params }) {
      usage `import('./PokemonInfo')` just returns resolved promise with module. */
   const module = import('./PokemonInfo');
   /* This request can also be cached but that's API's implementation detail.
-     For the example purpose, it just do new request all the time. */
+     For the example purpose, it just does new request all the time. */
   const pokemonInfo = Pokemons.retrieve(params.pokemonId);
   /* Since API request takes time, we show a pending message immediately
      and then wait for requests resolving. */
