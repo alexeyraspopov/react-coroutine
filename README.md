@@ -35,5 +35,6 @@ React Coroutine attempts to use basic language features for the sake of solving 
 
  * [react-refetch](https://github.com/heroku/react-refetch)
  * [react-transmit](https://github.com/RickWong/react-transmit)
+ * [react-loadable](https://github.com/thejameskyle/react-loadable)
  * [smalldots](https://github.com/smalldots/smalldots)
  * [react-controller](https://github.com/bradestey/react-controller)
