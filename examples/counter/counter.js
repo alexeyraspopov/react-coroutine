@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Coroutine from '../../src/Coroutine';
+import Coroutine from '../../modules/Coroutine';
 
 function getVariables() {
   return { counter: 0 };
