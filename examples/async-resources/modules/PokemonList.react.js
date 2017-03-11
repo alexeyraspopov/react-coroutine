@@ -2,6 +2,13 @@ import React from 'react';
 import Coroutine from 'react-coroutine';
 import Pokemons from './Pokemons';
 
+function getVariables() {
+  return {
+    offset: 0,
+    limit: 10,
+  }
+}
+
 async function PokemonList({ offset, limit }) {
   const pokemons = await Pokemons.retrieve(0, 10);
 
@@ -14,4 +21,4 @@ async function PokemonList({ offset, limit }) {
   );
 }
 
-export default Coroutine.create(PokemonList, () => ({ offset: 0, limit: 10 }));
+export default Coroutine.create(PokemonList, getVariables);
