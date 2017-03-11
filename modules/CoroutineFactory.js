@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import shallowCompare from 'react/lib/shallowCompare';
 
-function create(asyncFn, getVariables = () => ({})) {
+export default function create(asyncFn, getVariables = () => ({})) {
   const componentName = asyncFn.name || asyncFn.displayName;
 
   return class AsyncComponent extends Component {
@@ -75,5 +75,3 @@ function create(asyncFn, getVariables = () => ({})) {
     }
   }
 }
-
-export default { create };
