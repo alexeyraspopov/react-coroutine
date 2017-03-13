@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export default class Coroutine extends Component {
+export default class AsyncComponent extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = { body: React.createElement('noscript'),
-                   variables: getVariables(props, context) };
+                   variables: props.variables || {} };
     this.iterator = null;
     this.forceUpdateHelper = this.forceUpdate.bind(this);
     this.isComponentMounted = false;
