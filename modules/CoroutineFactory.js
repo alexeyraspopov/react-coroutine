@@ -13,6 +13,7 @@ export default function create(asyncFn, getVariables = () => ({})) {
       const variables = getVariables(props, context);
       const body = variables.placeholder || this.state.body;
       this.state = { body, variables };
+      this.asyncFunction = asyncFn;
     }
   }
 }
