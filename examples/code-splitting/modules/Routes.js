@@ -1,17 +1,17 @@
 import React from 'react';
 import Coroutine from 'react-coroutine';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import App from './App';
 import Pokemons from './PokemonAPI';
 
 /* Routes are using wrapped by Coroutine components for the sake of
    async functions and generators usage. */
 export default (
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Coroutine.create(PokemonListLoader)} />
-      <Route path=":pokemonId" component={Coroutine.create(PokemonInfoLoader)} />
-    </Route>
+  <Router>
+    <App>
+      <Route exact path="/" component={Coroutine.create(PokemonListLoader)} />
+      <Route exact path="/:pokemonId" component={Coroutine.create(PokemonInfoLoader)} />
+    </App>
   </Router>
 );
 
@@ -27,14 +27,14 @@ async function PokemonListLoader() {
 /* Async generator that is used as a component for /:pokemonId page.
    It imports `PokemonInfo` component and fetches particular pokemon data
    using API. */
-async function* PokemonInfoLoader({ params }) {
+async function* PokemonInfoLoader({ match }) {
   /* This component is rendered every time the user opens a pokemon profile.
      However, `PokemonInfo` component will be loaded only once. After first
      usage `import('./PokemonInfo')` just returns resolved promise with module. */
   const module = import('./PokemonInfo');
   /* This request can also be cached but that's API's implementation detail.
      For the example purpose, it just does new request all the time. */
-  const pokemonInfo = Pokemons.retrieve(params.pokemonId);
+  const pokemonInfo = Pokemons.retrieve(match.params.pokemonId);
   /* Since API request takes time, we show a pending message immediately
      and then wait for requests resolving. */
   yield <p>Loading...</p>;
