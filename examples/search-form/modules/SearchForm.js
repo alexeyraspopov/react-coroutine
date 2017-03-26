@@ -1,5 +1,5 @@
 import React from 'react';
-import Coroutine from '../../../modules/Coroutine';
+import Coroutine from 'react-coroutine';
 import SearchAPI from './SearchAPI';
 
 export default Coroutine.create(SearchForm);
