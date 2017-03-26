@@ -49,4 +49,20 @@ describe('Coroutine', async () => {
     const second = await Renderer.create(<p>Done!</p>);
     expect(tree.toJSON()).toEqual(second.toJSON());
   });
+
+  it('should allow placeholder replacement', async () => {
+    function getVariables() {
+      return { placeholder: <p>hello</p> };
+    }
+
+    async function render() {
+      return <p>test</p>;
+    }
+
+    const TestComponent = Coroutine.create(render, getVariables);
+    const tree = Renderer.create(<TestComponent />);
+
+    const placeholder = Renderer.create(<p>hello</p>);
+    expect(tree.toJSON()).toEqual(placeholder.toJSON());
+  });
 });
