@@ -1,6 +1,6 @@
 # search-form
 
-React Coroutine used for code splitting.
+React Coroutine used for search functionality.
 
 ## How to start
 

@@ -1,7 +1,7 @@
 {
   "name": "search-form",
   "version": "0.0.1",
-  "description": "Code splitting example with React Coroutine",
+  "description": "Search functionality example with React Coroutine",
   "main": "index.js",
   "dependencies": {
     "react": "~15.4.2",
