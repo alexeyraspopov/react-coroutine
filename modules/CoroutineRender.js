@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import shallowCompare from 'react/lib/shallowCompare';
 
 export default class AsyncComponent extends Component {
   constructor(props, context) {
@@ -15,20 +16,26 @@ export default class AsyncComponent extends Component {
     const additionalProps = { forceUpdate: this.forceUpdateHelper };
     const asyncBody = this.asyncFunction(Object.assign(additionalProps, variables, props));
 
+    this.iterator = asyncBody;
+
     if (asyncBody instanceof Promise) {
       asyncBody.then(body => {
-        this.setState(() => ({ body, variables }));
+        if (this.iterator === asyncBody) {
+          this.setState(() => ({ body, variables }));
+        }
       });
     } else {
-      this.iterator = asyncBody;
       const getNextBody = () => {
-        asyncBody.next().then((body) => {
-          if (body.done && typeof body.value === 'undefined') {
-            this.iterator = null;
-          } else {
-            this.setState(() => ({ body: body.value, variables }));
-            return getNextBody();
+        this.iterator.next().then((body) => {
+          if (this.iterator !== asyncBody) {
+            return;
           }
+
+          if (body.value) {
+            this.setState(() => ({ body: body.value, variables }));
+          }
+
+          return !body.done && getNextBody();
         });
       };
 
@@ -43,9 +50,8 @@ export default class AsyncComponent extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (shallowCompare(this, nextProps)) {
-      if (this.iterator) {
+      if (this.iterator && this.iterator.return) {
         this.iterator.return();
-        this.iterator = null;
       }
 
       if (this.isComponentMounted) {
@@ -55,9 +61,8 @@ export default class AsyncComponent extends Component {
   }
 
   componentWillUnmount() {
-    if (this.iterator) {
+    if (this.iterator && this.iterator.return) {
       this.iterator.return();
-      this.iterator = null;
     }
 
     this.isComponentMounted = false;
