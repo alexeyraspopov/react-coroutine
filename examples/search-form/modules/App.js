@@ -16,7 +16,7 @@ export default class App extends React.Component {
   render() {
     return (
       <article>
-        <input value={this.state.query} onChange={this.handleEvent} />
+        <input value={this.state.query} placeholder="Search for Node packages" onChange={this.handleEvent} />
         <SearchForm query={this.state.query} />
       </article>
     );
