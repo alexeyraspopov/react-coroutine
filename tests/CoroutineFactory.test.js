@@ -2,7 +2,7 @@ import React from 'react';
 import Renderer from 'react-test-renderer';
 import Coroutine from '../modules/Coroutine';
 
-describe('Coroutine', async () => {
+describe('Coroutine Factory', async () => {
   it('should render empty body until coroutine is resolved', async () => {
     async function render() {
       return <p>test</p>;
