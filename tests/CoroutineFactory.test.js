@@ -11,8 +11,7 @@ describe('Coroutine', async () => {
     const TestComponent = Coroutine.create(render);
     const tree = Renderer.create(<TestComponent />);
 
-    const initial = Renderer.create(<noscript />);
-    expect(tree.toJSON()).toEqual(initial.toJSON());
+    expect(tree.toJSON()).toEqual(null);
 
     const success = await Renderer.create(<p>test</p>);
     expect(tree.toJSON()).toEqual(success.toJSON());

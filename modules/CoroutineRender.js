@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import shallowCompare from 'react/lib/shallowCompare';
 
 export default class AsyncComponent extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = { body: React.createElement('noscript'),
+    this.state = { body: null,
                    variables: props.variables || {} };
     this.iterator = null;
     this.forceUpdateHelper = this.forceUpdate.bind(this);
@@ -31,7 +31,7 @@ export default class AsyncComponent extends Component {
             return;
           }
 
-          if (body.value) {
+          if (body.value !== undefined) {
             this.setState(() => ({ body: body.value, variables }));
           }
 
