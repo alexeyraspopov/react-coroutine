@@ -1,3 +1,10 @@
+## react-coroutine v0.6.0
+
+ * Provide `Coroutine.render` component to render async functions without wrapping them
+ * Add an ability to provide custom component for the initial (empty) state
+ * Drop outdated promises if coroutine was updated before they are resolved
+ * Use `null` as default initial body and allow returning it from coroutines
+
 ## react-coroutine v0.5.1
 
  * Fix `return` statement usage in async generators
