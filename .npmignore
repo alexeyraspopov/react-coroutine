@@ -1,5 +1,3 @@
-*
-!lib
-!docs
-!package.json
-!README.md
+tests
+modules
+examples

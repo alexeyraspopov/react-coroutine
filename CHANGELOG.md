@@ -1,3 +1,7 @@
+## react-coroutine v0.6.1
+
+ * Fix `.npmignore` due to lost modules after previous release
+
 ## react-coroutine v0.6.0
 
  * Provide `Coroutine.render` component to render async functions without wrapping them
