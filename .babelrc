@@ -1,0 +1,20 @@
+{
+  "env": {
+    "development": {
+      "presets": [
+        ["es2015", { "loose": true }],
+        "es2017",
+        "react",
+        "stage-3"
+      ]
+    },
+    "production": {
+      "presets": [
+        ["es2015", { "modules": false, "loose": true }],
+      ],
+      "plugins": [
+        "external-helpers"
+      ]
+    }
+  }
+}
