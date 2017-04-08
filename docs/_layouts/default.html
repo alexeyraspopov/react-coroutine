@@ -6,20 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title | default: site.title }}</title>
   <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+  <style media="screen">
+    body header { font-size: 2em;
+                  max-width: 100%;
+                  text-align: center;
+                  margin: 4em 0; }
+    nav { position: relative;
+          max-width: 40rem;
+          margin: 0 auto; }
+  </style>
 </head>
 <body>
   <header>
     <h1>React Coroutine</h1>
     <p>Stateful components made easy. No API, just language features.</p>
-
-    <nav>
-      <ul>
-        <li>Overview</li>
-        <li><a href="https://github.com/alexeyraspopov/react-coroutine/tree/master/examples" target="_blank" rel="noopener noreferrer">Examples</a></li>
-        <li><a href="https://github.com/alexeyraspopov/react-coroutine" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-      </ul>
-    </nav>
   </header>
+
+  <nav>
+    <ul>
+      <li>Overview</li>
+      <li><a href="https://github.com/alexeyraspopov/react-coroutine/tree/master/examples" target="_blank" rel="noopener noreferrer">Examples</a></li>
+      <li><a href="https://github.com/alexeyraspopov/react-coroutine" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    </ul>
+  </nav>
 
   <main>{{ content }}</main>
 </body>

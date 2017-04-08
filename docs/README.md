@@ -1,10 +1,8 @@
-## Overview
-
 React Coroutine is a small library which leverages the power of modern JavaScript to provide seamless way in creating stateful components with different purposes.
 
-## [](#install)Install
+## Install
 
-`react-coroutine` is [available](https://www.npmjs.com/package/react-coroutine) in NPM registry and can be installed both via [NPM](https://www.npmjs.com/) and [Yarn](https://yarnpkg.com/).
+The library is [available](https://www.npmjs.com/package/react-coroutine) in NPM registry and can be installed both via [NPM](https://www.npmjs.com/) and [Yarn](https://yarnpkg.com/).
 
 ```
 npm install react-coroutine
