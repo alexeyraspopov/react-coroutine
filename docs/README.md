@@ -14,7 +14,7 @@ npm install react-coroutine
 
 ## Usage
 
-```javascript
+```jsx
 import React from 'react';
 import Coroutine from 'react-coroutine';
 import Posts from 'PostAPI';
