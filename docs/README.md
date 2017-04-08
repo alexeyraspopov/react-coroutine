@@ -37,3 +37,7 @@ export default Coroutine.create(PostListCo);
 React Coroutine licensed under [the MIT](https://github.com/alexeyraspopov/react-coroutine/blob/master/LICENSE).
 
 The MIT License places almost no restrictions on what you can do with this lib. You are free to use it in commercial projects as long as the copyright is left intact.
+
+## Credits
+
+Amazing [awsm.css](https://igoradamenko.github.io/awsm.css) built by [Igor Adamenko](https://igoradamenko.com/) was used for making this website.
