@@ -6,8 +6,8 @@ const config = {
     ['es2015', { modules: false, loose: true }],
   ],
   plugins: ['external-helpers']
-}
+};
 
 export default {
   plugins: [babel(config)]
-}
+};
