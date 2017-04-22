@@ -16,7 +16,11 @@ export default class App extends React.Component {
   render() {
     return (
       <article>
-        <input value={this.state.query} placeholder="Search for Node packages" onChange={this.handleEvent} />
+        <h1>NPM Search</h1>
+        <input
+          value={this.state.query}
+          placeholder="Search for Node packages..."
+          onChange={this.handleEvent} />
         <SearchForm query={this.state.query} />
       </article>
     );

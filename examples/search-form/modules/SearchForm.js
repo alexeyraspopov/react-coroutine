@@ -37,7 +37,8 @@ function SearchResults({ results }) {
     <ul>
       {results.map((result) => (
         <li key={result.package.name}>
-          {result.package.name} ({result.score.final})
+          <h3 className="package-name"><a href={result.package.links.npm} target="_blank">{result.package.name}</a> <small className="package-version">({result.package.version})</small></h3>
+          <p className="package-description">{result.package.description}</p>
         </li>
       ))}
     </ul>
@@ -48,7 +49,7 @@ function ErrorMessage({ error }) {
   return (
     <details>
       <summary>Something went wrong!</summary>
-      <p>{error}</p>
+      <p>{error.message}</p>
     </details>
   );
 }
