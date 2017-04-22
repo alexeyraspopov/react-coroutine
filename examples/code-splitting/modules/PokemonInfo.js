@@ -5,7 +5,8 @@ export default function PokemonInfo({ data }) {
   return (
     <section>
       <Link to="/">&larr; Back</Link>
-      <pre>{ JSON.stringify(data, null, 2) }</pre>
+      <h3>{data.name}</h3>
+      <img src={data.sprites.front_default} />
     </section>
   );
 }
