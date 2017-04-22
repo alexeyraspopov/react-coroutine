@@ -2,7 +2,10 @@ React Coroutine is a small library which leverages the power of modern JavaScrip
 
 ## Goals
 
-_My hands are typing..._
+**Zero abstractions or DSLs**
+
+This library just use a coroutine as a React component. No API to learn and keep up to date, no additional workflows or blackboxes to worry about.
+
 
 ## Install
 
