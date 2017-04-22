@@ -1,17 +1,17 @@
 import React from 'react';
 import Coroutine from 'react-coroutine';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import App from './App';
 import Pokemons from './PokemonAPI';
 
 /* Routes are using wrapped by Coroutine components for the sake of
    async functions and generators usage. */
 export default (
   <Router>
-    <App>
+    <article>
+      <h1>Pokemons</h1>
       <Route exact path="/" component={Coroutine.create(PokemonListLoader)} />
       <Route exact path="/:pokemonId" component={Coroutine.create(PokemonInfoLoader)} />
-    </App>
+    </article>
   </Router>
 );
 
