@@ -1,6 +1,8 @@
 import React from 'react';
 import Coroutine from 'react-coroutine';
 import SearchAPI from './SearchAPI';
+import SearchResults from './SearchResults';
+import ErrorMessage from './ErrorMessage';
 
 /* A coroutine becomes a React component via this wrapper. */
 export default Coroutine.create(SearchForm);
@@ -28,28 +30,4 @@ async function* SearchForm({ query }) {
   } catch (error) {
     return <ErrorMessage error={error} />;
   }
-}
-
-function SearchResults({ results }) {
-  return results.length === 0 ? (
-    <p>No results</p>
-  ) : (
-    <ul>
-      {results.map((result) => (
-        <li key={result.package.name}>
-          <h3 className="package-name"><a href={result.package.links.npm} target="_blank">{result.package.name}</a> <small className="package-version">({result.package.version})</small></h3>
-          <p className="package-description">{result.package.description}</p>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function ErrorMessage({ error }) {
-  return (
-    <details>
-      <summary>Something went wrong!</summary>
-      <p>{error.message}</p>
-    </details>
-  );
 }
