@@ -1,11 +1,6 @@
 React Coroutine is a small library which leverages the power of modern JavaScript to provide seamless way in creating stateful components with different purposes.
 
-## Goals
-
-**Zero abstractions or DSLs**
-
 This library just use a coroutine as a React component. No API to learn and keep up to date, no additional workflows or blackboxes to worry about.
-
 
 ## Install
 
