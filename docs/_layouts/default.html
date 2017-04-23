@@ -60,8 +60,8 @@
 
   <nav>
     <ul>
-      <li>Overview</li>
-      <li><a href="Details.html">Details</a></li>
+      <li><a {% if page.url != '/' %}href="/react-coroutine/"{% endif %}>Overview</a></li>
+      <li><a {% if page.url != '/Details.html' %}href="/react-coroutine/Details.html"{% endif %}>Details</a></li>
       <li><a href="https://github.com/alexeyraspopov/react-coroutine/tree/master/examples" target="_blank">Examples</a></li>
       <li><a href="https://github.com/alexeyraspopov/react-coroutine" target="_blank">GitHub</a></li>
     </ul>
