@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700">
   <style media="screen">
+    @font-face {
+      font-family: FiraCode;
+      font-style: normal;
+      font-weight: normal;
+      src: local('FiraCode-Retina'), local('FiraCode-Regular'), url('https://cdn.rawgit.com/tonsky/FiraCode/master/distr/ttf/FiraCode-Regular.ttf') format('ttf');
+    }
+
     body header {
       font-size: 2em;
       max-width: 100%;
@@ -30,6 +37,9 @@
       margin: -1em auto 2.5em auto;
       padding: 1em 0;
       z-index: 1;
+    }
+    code {
+      font-family: FiraCode;
     }
     .primary-accent {
       color: #303f9f;
