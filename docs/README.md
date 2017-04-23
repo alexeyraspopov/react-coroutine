@@ -12,23 +12,21 @@ npm install react-coroutine
 
 ## Usage
 
-```jsx
-import React from 'react';
-import Coroutine from 'react-coroutine';
-import Posts from 'PostAPI';
-import PostList from 'PostList.react';
+    import React from 'react';
+    import Coroutine from 'react-coroutine';
+    import Posts from 'PostAPI';
+    import PostList from 'PostList.react';
 
-async function PostListCo() {
-  try {
-    const posts = await Posts.retrieve();
-    return <PostList posts={posts} />;
-  } catch (error) {
-    return <p>Unable to fetch posts.</p>;
-  }
-}
+    async function PostListCo() {
+      try {
+        const posts = await Posts.retrieve();
+        return <PostList posts={posts} />;
+      } catch (error) {
+        return <p>Unable to fetch posts.</p>;
+      }
+    }
 
-export default Coroutine.create(PostListCo);
-```
+    export default Coroutine.create(PostListCo);
 
 ## License
 
@@ -38,4 +36,4 @@ The MIT License places almost no restrictions on what you can do with this lib. 
 
 ## Credits
 
-Amazing [awsm.css](https://igoradamenko.github.io/awsm.css) built by [Igor Adamenko](https://igoradamenko.com/) was used for making this website.
+Amazing [awsm.css](https://igoradamenko.github.io/awsm.css) built by [Igor Adamenko](https://igoradamenko.com/) was used for making the website.
