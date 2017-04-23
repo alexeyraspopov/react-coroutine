@@ -60,8 +60,8 @@
 
   <nav>
     <ul>
-      <li><a {% if page.url != '/' %}href="/react-coroutine/"{% endif %}>Overview</a></li>
-      <li><a {% if page.url != '/Details.html' %}href="/react-coroutine/Details.html"{% endif %}>Details</a></li>
+      <li>{% if page.url == '/' %}<span>Overview</span>{% else %}<a href="/react-coroutine/">Overview</a> {% endif %}</li>
+      <li>{% if page.url == '/Details.html' %}<span>Details</span>{% else %}<a href="/react-coroutine/Details.html">Details</a>{% endif %}</li>
       <li><a href="https://github.com/alexeyraspopov/react-coroutine/tree/master/examples" target="_blank">Examples</a></li>
       <li><a href="https://github.com/alexeyraspopov/react-coroutine" target="_blank">GitHub</a></li>
     </ul>
