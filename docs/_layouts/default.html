@@ -55,6 +55,6 @@
   </nav>
 
   <main>{{ content }}</main>
-  <script src="highlight.js" charset="utf-8"></script>
+  <script src="{{ '/assets/highlight.js?v=' | append: site.github.build_revision | relative_url }}" charset="utf-8"></script>
 </body>
 </html>
