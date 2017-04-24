@@ -20,14 +20,14 @@ export default class AsyncComponent extends Component {
 
     if (asyncBody instanceof Promise) {
       asyncBody.then(body => {
-        if (this.iterator === asyncBody) {
+        if (this.isComponentMounted && this.iterator === asyncBody) {
           this.setState(() => ({ body, variables }));
         }
       });
     } else {
       const getNextBody = () => {
         this.iterator.next().then((body) => {
-          if (this.iterator !== asyncBody) {
+          if (!this.isComponentMounted || this.iterator !== asyncBody) {
             return;
           }
 
