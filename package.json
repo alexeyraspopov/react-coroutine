@@ -11,12 +11,14 @@
   "homepage": "https://alexeyraspopov.github.io/react-coroutine",
   "repository": "alexeyraspopov/react-coroutine",
   "keywords": [
+    "async",
     "react",
     "component",
-    "coroutine",
     "container",
-    "async",
-    "generator"
+    "coroutine",
+    "generator",
+    "stateful",
+    "iterator"
   ],
   "author": "Alexey Raspopov",
   "license": "MIT",
