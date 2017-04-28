@@ -18,6 +18,31 @@ This project tends to use the simplicity of functional React components and the 
 
 The problem of existent solutions in colocating data fetching is an initial complexity of their APIs. These APIs usually tend to provide convenient way for handling one particular use case. This often means possible future issues with handling exceptions or dealing with pending state. However, that's something that can be easily described in terms of the language and may be different based on your opinion or particular task.
 
+## How it works: async functions
+
+When an async component is mounted, async function is executed. Initially, mounted component will render nothing, since async function hasn't been resolved or rejected yet. You can set your `placeholder` for the pending state, check Dependency Injection docs below. Once async function is resolved, the thing it returned will be rendered instead of placeholder. Whenever you pass new props to an async component it will switch to pending state and execute async function again.
+
+## How it works: async generators
+
+In the same way as async functions work, async generators are executed when a component is mounted. In addition, you can produce content more than once by using `yield` keyword. You can find a good example of `yield` keyword usage on [examples page](/Examples.html).
+
+    async function* MultipleStepsRender() {
+      yield <p>Loading...</p>;
+
+      const firstPart = await fetchSomeData();
+      yield <DataList first={firstPart} />;
+
+      const secondPart = await fetchMoreData();
+      return <DataList first={firstPart} second={secondPart} />;
+    }
+
+Worth mentioning, `for..await` also can be used for producing content over time.
+
+    async function* EventMonitor({ stream }) {
+      for await (const event of stream)
+        yield <EventInfo event={event} />;
+    }
+
 ## Dependency injection
 
 For the sake of code isolation you might want to inject instances into your coroutine in the way how React `props` are provided.
