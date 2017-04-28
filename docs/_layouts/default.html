@@ -14,7 +14,6 @@
       font-weight: normal;
       src: local('FiraCode-Retina'), local('FiraCode-Regular'), url('https://cdn.rawgit.com/tonsky/FiraCode/master/distr/ttf/FiraCode-Regular.ttf') format('truetype');
     }
-
     body header {
       font-size: 2em;
       max-width: 100%;
@@ -65,14 +64,15 @@
 
   <nav>
     <ul>
-      <li>{% if page.url == '/' %}<span>Overview</span>{% else %}<a href="/react-coroutine/">Overview</a> {% endif %}</li>
-      <li>{% if page.url == '/Details.html' %}<span>Details</span>{% else %}<a href="/react-coroutine/Details.html">Details</a>{% endif %}</li>
-      <li>{% if page.url == '/Examples.html' %}<span>Examples</span>{% else %}<a href="/react-coroutine/Examples.html">Examples</a>{% endif %}</li>
+      <li>{% if page.url == '/' %}<span>Overview</span>{% else %}<a href="/">Overview</a> {% endif %}</li>
+      <li>{% if page.url == '/Details.html' %}<span>Details</span>{% else %}<a href="/Details.html">Details</a>{% endif %}</li>
+      <li>{% if page.url == '/Examples.html' %}<span>Examples</span>{% else %}<a href="/Examples.html">Examples</a>{% endif %}</li>
       <li><a href="https://github.com/alexeyraspopov/react-coroutine" target="_blank">GitHub</a></li>
     </ul>
   </nav>
 
   <main>{{ content }}</main>
+
   <script src="{{ '/assets/highlight.js?v=' | append: site.github.build_revision | relative_url }}" charset="utf-8"></script>
 </body>
 </html>
