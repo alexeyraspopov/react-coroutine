@@ -23,11 +23,11 @@ export default Coroutine.create(UserListContainer);
 
 ## Install
 
-    npm install -S react-coroutine
+    npm install react-coroutine
 
 ## Usage
 
-See [docs](./docs/) for more.
+See [details page](https://alexeyraspopov.github.io/react-coroutine/Details.html) for more.
 
 ## List of projects that can be built with react-coroutine
 
@@ -36,5 +36,5 @@ React Coroutine attempts to use basic language features for the sake of solving 
  * [react-refetch](https://github.com/heroku/react-refetch)
  * [react-transmit](https://github.com/RickWong/react-transmit)
  * [react-loadable](https://github.com/thejameskyle/react-loadable)
- * [smalldots](https://github.com/smalldots/smalldots)
  * [react-controller](https://github.com/bradestey/react-controller)
+ * [smalldots](https://github.com/smalldots/smalldots)

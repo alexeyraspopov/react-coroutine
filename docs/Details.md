@@ -12,7 +12,7 @@ The power of coroutines allows to write code in synchronous style and be able to
       }
     }
 
-Since React allows as to treat the UI as a first-class citizen, we can mix both things for the sake of solving problems that are the same in React and in just JavaScript code.
+Since React allows us to treat the UI as a first-class citizen, we can mix both things for the sake of solving problems that are the same for React and for just JavaScript code.
 
 This project tends to use the simplicity of functional React components and the essential mechanism of coroutines to create stateful components with data fetching colocation.
 
@@ -20,7 +20,7 @@ The problem of existent solutions in colocating data fetching is an initial comp
 
 ## Dependency injection
 
-For the sake of testability you might want to inject instances into your coroutine in the way how React `props` are provided.
+For the sake of code isolation you might want to inject instances into your coroutine in the way how React `props` are provided.
 
 You are able to provide `getVariables()` function that receives `props` and `context` and returns an object that will be passed in a coroutine.
 

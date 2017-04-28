@@ -4,7 +4,7 @@ This library just use a coroutine as a React component. No API to learn and keep
 
 ## Install
 
-The library is [available](https://www.npmjs.com/package/react-coroutine) in NPM registry and can be installed both via [NPM](https://www.npmjs.com/) and [Yarn](https://yarnpkg.com/).
+Use [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) to install the library from NPM [registry](https://www.npmjs.com/package/react-coroutine).
 
     npm install react-coroutine
 
