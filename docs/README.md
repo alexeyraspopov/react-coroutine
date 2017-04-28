@@ -6,9 +6,7 @@ This library just use a coroutine as a React component. No API to learn and keep
 
 The library is [available](https://www.npmjs.com/package/react-coroutine) in NPM registry and can be installed both via [NPM](https://www.npmjs.com/) and [Yarn](https://yarnpkg.com/).
 
-```
-npm install react-coroutine
-```
+    npm install react-coroutine
 
 ## Usage
 
@@ -37,3 +35,5 @@ The MIT License places almost no restrictions on what you can do with this lib. 
 ## Credits
 
 Amazing [awsm.css](https://igoradamenko.github.io/awsm.css) built by [Igor Adamenko](https://igoradamenko.com/) was used for making the website.
+
+Code examples use [FiraCode](https://github.com/tonsky/FiraCode) font family.
