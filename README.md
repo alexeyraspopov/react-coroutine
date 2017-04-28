@@ -7,12 +7,12 @@ React Components as Coroutines.
 
 Use async [functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) and [generators](https://github.com/tc39/proposal-async-iteration) to render React components based on async state.
 
-```jsx
+```javascript
 import React from 'react';
 import Coroutine from 'react-coroutine';
 ```
 
-```jsx
+```javascript
 async function UserListContainer() {
   try {
     // Wait for async data and render it in the same way as plain components
@@ -26,7 +26,7 @@ async function UserListContainer() {
 export default Coroutine.create(UserListContainer);
 ```
 
-```jsx
+```javascript
 async function* PokemonInfoPage({ pokemonId, pokemonName }) {
   // Use generators to provide multiple render points of your async component
   yield <p>Loading {pokemonName} info...</p>;
