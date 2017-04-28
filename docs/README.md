@@ -26,6 +26,10 @@ Use [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) to install the
 
     export default Coroutine.create(PostListCo);
 
+## Requirements
+
+If your project uses tools like [Babel](babeljs.io/) for code compilation, make sure your configuration supports `async`/`await` syntax (for async functions or generators). Plugins like [transform-async-to-generator](https://babeljs.io/docs/plugins/transform-async-to-generator/) and [transform-async-generator-functions](https://babeljs.io/docs/plugins/transform-async-generator-functions/) can help you with it and they might be already a part of presets your configuration uses.
+
 ## License
 
 React Coroutine licensed under [the MIT](https://github.com/alexeyraspopov/react-coroutine/blob/master/LICENSE).

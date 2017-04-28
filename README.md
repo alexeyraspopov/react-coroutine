@@ -44,7 +44,7 @@ async function* PokemonInfoPage({ pokemonId, pokemonName }) {
 
 ## Usage
 
-See [details page](https://alexeyraspopov.github.io/react-coroutine/Details.html) for more.
+See [details page](https://react-coroutine.js.org/Details.html) for more.
 
 ## List of projects that can be built with react-coroutine
 
