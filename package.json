@@ -1,6 +1,6 @@
 {
   "name": "react-coroutine",
-  "version": "0.6.1",
+  "version": "1.0.0",
   "description": "React Components as Coroutines",
   "main": "lib/Coroutine.js",
   "module": "modules/Coroutine.js",
@@ -8,7 +8,7 @@
     "test": "jest",
     "prepublish": "rollup --format cjs --config rollup.config.js modules/Coroutine.js > lib/Coroutine.js"
   },
-  "homepage": "https://alexeyraspopov.github.io/react-coroutine",
+  "homepage": "https://react-coroutine.js.org/",
   "repository": "alexeyraspopov/react-coroutine",
   "keywords": [
     "async",

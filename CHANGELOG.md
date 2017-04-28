@@ -1,3 +1,9 @@
+## react-coroutine v1.0.0
+
+ * Use Rollup to build smaller bundle
+ * Provide `pkg.module` property for bundling original sources
+ * Prevent calls of `setState()` for unmounted components
+
 ## react-coroutine v0.6.1
 
  * Fix `.npmignore` due to lost modules after previous release
