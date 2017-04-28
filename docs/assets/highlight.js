@@ -1,7 +1,7 @@
 const codeSnippets = document.querySelectorAll('pre');
 
 const whiteListIdentifiers = ['create', 'retrieve', 'update', 'destroy', 'render'];
-const reservedWords = ['class', 'extends', 'return', 'throw', 'new', 'function', 'async', 'await',
+const reservedWords = ['class', 'extends', 'return', 'throw', 'yield', 'new', 'function', 'async', 'await',
                        'for', 'if', 'of', 'switch', 'case', 'default', 'this', 'const', 'let',
                        'var', 'true', 'false', 'try', 'catch', 'finally', 'static', 'import',
                        'from', 'export', 'default'];
