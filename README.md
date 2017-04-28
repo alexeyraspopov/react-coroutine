@@ -19,6 +19,7 @@ async function UserListContainer() {
     const users = await Users.retrieve();
     return <UserList users={users} />;
   } catch (error) {
+    // Handle failures in place with just JavaScript tools
     return <ErrorMessage error={error} />;
   }
 }
