@@ -44,3 +44,11 @@ You are able to provide `getVariables()` function that receives `props` and `con
 In the example above, the result component receives `userId` property and uses it to provide a loader to the coroutine.
 
     <PostListCo userId={...} />
+
+Optionally, by using dependency injection mechanism, you can modify the presentation of pending state: the thing that is rendered until async function is not resolved.
+
+    function getVariables() {
+      return {
+        placeholder: <SomeLoadingSpinner />
+      };
+    }
