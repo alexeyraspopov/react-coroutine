@@ -2,6 +2,8 @@
 
 React Components as Coroutines.
 
+    npm install react-coroutine
+
 > **Coroutines** are computer program components that generalize subroutines for nonpreemptive multitasking, by allowing multiple entry points for suspending and resuming execution at certain locations. Coroutines are well-suited for implementing more familiar program components such as cooperative tasks, exceptions, event loop, iterators, infinite lists and pipes.  
 > — _[Wikipedia](https://en.wikipedia.org/wiki/Coroutine)_
 
@@ -39,10 +41,6 @@ async function* PokemonInfoPage({ pokemonId, pokemonName }) {
   return <PokemonInfo data={data} />;
 }
 ```
-
-## Install
-
-    npm install react-coroutine
 
 ## Usage
 
