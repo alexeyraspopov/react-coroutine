@@ -1,3 +1,7 @@
+## react-coroutine v1.0.1
+
+ * Fix `contextTypes` usage for async functions
+
 ## react-coroutine v1.0.0
 
  * Use Rollup to build smaller bundle
