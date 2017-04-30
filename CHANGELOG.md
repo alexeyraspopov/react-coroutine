@@ -1,6 +1,6 @@
 ## react-coroutine v1.0.1
 
- * Fix `contextTypes` usage for async functions
+ * Fix the usage of `contextTypes` for async functions
 
 ## react-coroutine v1.0.0
 
