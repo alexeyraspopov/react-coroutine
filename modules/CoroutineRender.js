@@ -18,7 +18,7 @@ export default class AsyncComponent extends Component {
 
     this.iterator = asyncBody;
 
-    if (asyncBody instanceof Promise) {
+    if (typeof asyncBody.then === 'function') {
       asyncBody.then(body => {
         if (this.isComponentMounted && this.iterator === asyncBody) {
           this.setState(() => ({ body, variables }));

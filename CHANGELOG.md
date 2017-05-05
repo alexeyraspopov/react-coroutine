@@ -1,3 +1,7 @@
+## react-coroutine v1.0.2
+
+ * Fix compatibility issue with polyfilled Promises
+
 ## react-coroutine v1.0.1
 
  * Fix the usage of `contextTypes` for async functions
