@@ -56,3 +56,4 @@ React Coroutine attempts to use basic language features for the sake of solving 
  * [react-controller](https://github.com/bradestey/react-controller)
  * [react-async-component](https://github.com/ctrlplusb/react-async-component)
  * [smalldots](https://github.com/smalldots/smalldots)
+ * [holen](https://github.com/tkh44/holen)
