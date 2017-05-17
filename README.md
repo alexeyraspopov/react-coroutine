@@ -50,9 +50,11 @@ See [details page](https://react-coroutine.js.org/Details.html) for more.
 
 React Coroutine attempts to use basic language features for the sake of solving problems that are usually solved with APIs and new abstractions that require particular knowledge about them and sometimes about internal processes (leaky abstractions).
 
+ * [react-async](https://github.com/andreypopp/react-async)
  * [react-refetch](https://github.com/heroku/react-refetch)
  * [react-transmit](https://github.com/RickWong/react-transmit)
  * [react-loadable](https://github.com/thejameskyle/react-loadable)
+ * [react-resolver](https://github.com/ericclemmons/react-resolver)
  * [react-controller](https://github.com/bradestey/react-controller)
  * [react-async-component](https://github.com/ctrlplusb/react-async-component)
  * [smalldots](https://github.com/smalldots/smalldots)
