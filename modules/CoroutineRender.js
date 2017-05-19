@@ -18,7 +18,7 @@ export default class AsyncComponent extends Component {
 
   forceUpdate(variables = this.state.variables, props = this.props) {
     const additionalProps = { forceUpdate: this.forceUpdateHelper };
-    const asyncBody = this.asyncFunction(Object.assign(additionalProps, variables, props));
+    const asyncBody = this.asyncFunction(Object.assign(additionalProps, variables, props), this.context);
 
     this.iterator = asyncBody;
 
