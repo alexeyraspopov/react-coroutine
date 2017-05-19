@@ -1,5 +1,9 @@
 import { Component } from 'react';
-import shallowCompare from 'react/lib/shallowCompare';
+import isEqual from 'shallowequal';
+
+function shallowCompare(instance, nextProps, nextState) {
+  return !isEqual(instance.props, nextProps) || !isEqual(instance.state, nextState);
+}
 
 export default class AsyncComponent extends Component {
   constructor(props, context) {
