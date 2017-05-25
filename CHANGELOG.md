@@ -1,6 +1,7 @@
 ## react-coroutine v1.0.3
 
  * Use `jsnext:main` instead of `pkg.module` because of Webpack 2 issue
+ * Use `shallowequal` instead of React's internal tool
 
 ## react-coroutine v1.0.2
 
