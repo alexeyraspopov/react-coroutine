@@ -1,9 +1,9 @@
 {
   "name": "react-coroutine",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React Components as Coroutines",
   "main": "lib/Coroutine.js",
-  "module": "modules/Coroutine.js",
+  "jsnext:main": "modules/Coroutine.js",
   "scripts": {
     "test": "jest",
     "prepublish": "rollup --format cjs --config rollup.config.js modules/Coroutine.js > lib/Coroutine.js"

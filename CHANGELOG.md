@@ -1,3 +1,7 @@
+## react-coroutine v1.0.3
+
+ * Use `jsnext:main` instead of `pkg.module` because of Webpack 2 issue
+
 ## react-coroutine v1.0.2
 
  * Fix compatibility issue with polyfilled Promises
