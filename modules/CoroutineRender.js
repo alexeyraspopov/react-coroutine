@@ -1,10 +1,6 @@
 import { Component } from 'react';
 import isEqual from 'shallowequal';
 
-function shallowCompare(instance, nextProps, nextState) {
-  return !isEqual(instance.props, nextProps) || !isEqual(instance.state, nextState);
-}
-
 export default class AsyncComponent extends Component {
   constructor(props, context) {
     super(props, context);
@@ -14,6 +10,7 @@ export default class AsyncComponent extends Component {
     this.forceUpdateHelper = this.forceUpdate.bind(this);
     this.isComponentMounted = false;
     this.asyncFunction = props.co;
+    this.getVariables = props.getVariables || (() => props.variables || {});
   }
 
   forceUpdate(variables = this.state.variables, props = this.props) {
@@ -52,14 +49,15 @@ export default class AsyncComponent extends Component {
     return this.forceUpdate();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (shallowCompare(this, nextProps)) {
+  componentWillReceiveProps(nextProps, nextContext) {
+    if (!isEqual(this, nextProps)) {
       if (this.iterator && this.iterator.return) {
         this.iterator.return();
       }
 
       if (this.isComponentMounted) {
-        this.forceUpdate(this.state.variables, nextProps);
+        const variables = this.getVariables(nextProps, nextContext);
+        this.forceUpdate(variables, nextProps);
       }
     }
   }

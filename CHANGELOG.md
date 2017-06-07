@@ -1,3 +1,7 @@
+## react-coroutine v1.0.4
+
+ * Fix the issue with redundant updates due to late props comparison
+
 ## react-coroutine v1.0.3
 
  * Use `jsnext:main` instead of `pkg.module` because of Webpack 2 issue

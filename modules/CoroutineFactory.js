@@ -18,11 +18,7 @@ export default function create(asyncFn, getVariables = () => ({})) {
       const body = variables.placeholder || this.state.body;
       this.state = { body, variables };
       this.asyncFunction = asyncFn;
-    }
-
-    componentWillReceiveProps(nextProps, nextContext) {
-      const variables = getVariables(nextProps, nextContext);
-      this.setState(() => { variables }, () => super.componentWillReceiveProps(nextProps));
+      this.getVariables = getVariables;
     }
   }
 }
