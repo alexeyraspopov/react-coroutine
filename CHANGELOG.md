@@ -1,4 +1,4 @@
-## react-coroutine v1.0.4
+## react-coroutine v1.0.5
 
  * Fix the issue with redundant updates due to late props comparison
  * Fix broken reference to the current props state
