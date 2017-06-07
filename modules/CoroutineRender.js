@@ -50,7 +50,7 @@ export default class AsyncComponent extends Component {
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    if (!isEqual(this, nextProps)) {
+    if (!isEqual(this.props, nextProps)) {
       if (this.iterator && this.iterator.return) {
         this.iterator.return();
       }
