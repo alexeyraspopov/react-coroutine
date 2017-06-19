@@ -1,3 +1,7 @@
+## react-coroutine v1.0.6
+
+ * Use latest `shallowequal` without `lodash` dependency (–3kb of minified code)
+
 ## react-coroutine v1.0.5
 
  * Fix the issue with redundant updates due to late props comparison

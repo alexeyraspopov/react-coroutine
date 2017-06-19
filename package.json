@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "react": "15.x",
-    "shallowequal": "~0.2.2"
+    "shallowequal": "~1.0.1"
   },
   "devDependencies": {
     "babel-cli": "6.x",
