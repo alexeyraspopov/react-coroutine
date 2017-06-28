@@ -42,6 +42,30 @@ async function* PokemonInfoPage({ pokemonId, pokemonName }) {
 export default Coroutine.create(PokemonInfoPage);
 ```
 
+```javascript
+class MyComponent extends Coroutine {
+  async observe() {
+    try {
+      const users = await Users.retrieve();
+      return { status: 'success', users };
+    } catch (error) {
+      return { status: 'failure', error };
+    }
+  }
+
+  render() {
+    switch (this.state.data.status) {
+    case 'success':
+      return <UserList users={this.state.data.users} />;
+    case 'failure':
+      return <ErrorMessage error={this.state.data.error} />;
+    default:
+      return <Loading />;
+    }
+  }
+}
+```
+
 ## Usage
 
 See [details page](https://react-coroutine.js.org/Details.html) for more.
