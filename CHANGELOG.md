@@ -1,3 +1,9 @@
+## react-coroutine v2.0.0-alpha.1
+
+ * Remove `getVariables` mechanism
+ * Remove unused `Coroutine.render` component
+ * Introduce `Coroutine` as a base React component
+
 ## react-coroutine v1.0.6
 
  * Use latest `shallowequal` without `lodash` dependency (–3kb of minified code)
