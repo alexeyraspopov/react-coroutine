@@ -1,8 +1,9 @@
-## react-coroutine v2.0.0-alpha.1
+## react-coroutine v2.0.0-alpha.2
 
  * Remove `getVariables` mechanism
  * Remove unused `Coroutine.render` component
  * Introduce `Coroutine` as a base React component
+ * Fix the issue with stale props after receiving new
 
 ## react-coroutine v1.0.6
 

@@ -12,8 +12,8 @@ export default class Coroutine extends Component {
         return `Coroutine(${asyncFn.name})`;
       }
 
-      observe() {
-        return asyncFn(this.props, this.context);
+      observe(props, context) {
+        return asyncFn(props, context);
       }
 
       render() {
@@ -38,8 +38,8 @@ export default class Coroutine extends Component {
     throw new Error('Coroutine::observe should be implemented by a subclass');
   }
 
-  forceUpdate(props) {
-    const asyncBody = this.observe();
+  forceUpdate(props, context) {
+    const asyncBody = this.observe(props, context);
 
     this.iterator = asyncBody;
 
@@ -70,7 +70,7 @@ export default class Coroutine extends Component {
 
   componentDidMount() {
     this.isComponentMounted = true;
-    return this.forceUpdate(this.props);
+    return this.forceUpdate(this.props, this.context);
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -80,7 +80,7 @@ export default class Coroutine extends Component {
       }
 
       if (this.isComponentMounted) {
-        this.forceUpdate(nextProps);
+        this.forceUpdate(nextProps, nextContext);
       }
     }
   }
