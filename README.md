@@ -54,11 +54,12 @@ class MyComponent extends Coroutine {
   }
 
   render() {
-    switch (this.state.data.status) {
+    const { data: { status, users, error } } = this.state
+    switch (status) {
     case 'success':
-      return <UserList users={this.state.data.users} />;
+      return <UserList users={users} />;
     case 'failure':
-      return <ErrorMessage error={this.state.data.error} />;
+      return <ErrorMessage error={error} />;
     default:
       return <Loading />;
     }
