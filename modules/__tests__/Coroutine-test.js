@@ -1,6 +1,6 @@
 import React from 'react';
 import Renderer from 'react-test-renderer';
-import Coroutine from '../modules/Coroutine';
+import Coroutine from '../Coroutine';
 
 describe('Coroutine', () => {
   it('should render empty body until coroutine is resolved', async () => {
