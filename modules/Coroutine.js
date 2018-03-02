@@ -13,7 +13,7 @@ function create(asyncFn) {
     observe(props) {
       return asyncFn(props);
     }
-  }
+  };
 }
 
 class Coroutine extends Component {
@@ -33,50 +33,22 @@ class Coroutine extends Component {
 
     this.iterator = asyncBody;
 
-    if (typeof asyncBody.then === 'function') {
-      asyncBody.then(data => {
-        if (this.isComponentMounted && this.iterator === asyncBody) {
-          this.setState(() => ({ data }));
-        }
-      });
+    const updater = data => {
+      if (this.isComponentMounted && this.iterator === asyncBody) {
+        this.setState({ data });
+      }
+    };
+
+    if (isPromiseLike(asyncBody)) {
+      asyncBody.then(updater);
     } else {
-      function resolveSyncIterator(i, step, cb) {
-        if (!step.done) {
-          if (step.value && typeof step.value.then === 'function') {
-            step.value.then(data => resolveSyncIterator(i, i.next(data), cb));
-          } else {
-            resolveSyncIterator(i, i.next(step.value), cb);
-          }
-        } else {
-          cb(step.value);
-        }
-      };
+      const step = this.iterator.next();
 
-      function resolveAsyncIterator(i, step, cb) {
-        step.then((data) => {
-          if (data.value !== undefined) {
-            cb(data.value);
-          }
-
-          return !data.done && resolveAsyncIterator(i, i.next(), cb);
-        });
-      };
-
-      function resolveIterator(iterator, instance) {
-        const step = iterator.next();
-
-        const updater = (data) => {
-          return instance.isComponentMounted && instance.setState({ data });
-        };
-
-        if (typeof step.then === 'function') {
-          resolveAsyncIterator(iterator, step, updater);
-        } else {
-          resolveSyncIterator(iterator, step, updater);
-        }
-      };
-
-      resolveIterator(this.iterator, this);
+      if (isPromiseLike(step)) {
+        resolveAsyncIterator(this.iterator, step, updater);
+      } else {
+        resolveSyncIterator(this.iterator, step, updater);
+      }
     }
   }
 
@@ -108,4 +80,30 @@ class Coroutine extends Component {
   render() {
     return this.state.data;
   }
+}
+
+function resolveSyncIterator(i, step, cb) {
+  if (!step.done) {
+    if (isPromiseLike(step.value)) {
+      step.value.then(data => resolveSyncIterator(i, i.next(data), cb));
+    } else {
+      resolveSyncIterator(i, i.next(step.value), cb);
+    }
+  } else {
+    cb(step.value);
+  }
+}
+
+function resolveAsyncIterator(i, step, cb) {
+  step.then(data => {
+    if (data.value !== undefined) {
+      cb(data.value);
+    }
+
+    return !data.done && resolveAsyncIterator(i, i.next(), cb);
+  });
+}
+
+function isPromiseLike(target) {
+  return target && typeof target.then === 'function';
 }
