@@ -40,13 +40,16 @@ class Coroutine extends Component {
     };
 
     if (isPromiseLike(asyncBody)) {
+      // asyncFn is Async Function, awaiting for the final result
       asyncBody.then(updater);
     } else {
       const step = this.iterator.next();
 
       if (isPromiseLike(step)) {
+        // asyncFn is Async Generator, rendering every time it yields
         resolveAsyncIterator(this.iterator, step, updater);
       } else {
+        // asyncFn is Sync Generator, rendering the final result, awaiting yielded promises
         resolveSyncIterator(this.iterator, step, updater);
       }
     }
