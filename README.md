@@ -43,26 +43,9 @@ export default Coroutine.create(PokemonInfoPage);
 ```
 
 ```javascript
-class MyComponent extends Coroutine {
-  async observe() {
-    try {
-      const users = await Users.retrieve();
-      return { status: 'success', users };
-    } catch (error) {
-      return { status: 'failure', error };
-    }
-  }
-
-  render() {
-    switch (this.state.data.status) {
-    case 'success':
-      return <UserList users={this.state.data.users} />;
-    case 'failure':
-      return <ErrorMessage error={this.state.data.error} />;
-    default:
-      return <Loading />;
-    }
-  }
+function* MovieInfoLoader({ movieId }) {
+  const movieData = yield movieCache.read(movieId);
+  return <MovieInfo data={movieData} />;
 }
 ```
 
