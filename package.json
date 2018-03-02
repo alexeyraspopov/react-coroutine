@@ -3,10 +3,12 @@
   "version": "2.0.0-alpha.2",
   "description": "React Components as Coroutines",
   "main": "lib/Coroutine.js",
-  "jsnext:main": "modules/Coroutine.js",
+  "module": "lib/Coroutine.module.js",
   "scripts": {
     "test": "jest",
-    "prepublish": "rollup --format cjs --config rollup.config.js modules/Coroutine.js > lib/Coroutine.js"
+    "buildcjs": "rollup --format cjs --config rollup.config.js modules/Coroutine.js > lib/Coroutine.js",
+    "buildesm": "rollup --format es --config rollup.config.js modules/Coroutine.js > lib/Coroutine.module.js",
+    "prepublish": "npm run buildcjs && npm run buildesm"
   },
   "homepage": "https://react-coroutine.js.org/",
   "repository": "alexeyraspopov/react-coroutine",
