@@ -38,8 +38,8 @@ export default class Coroutine extends Component {
     throw new Error('Coroutine::observe should be implemented by a subclass');
   }
 
-  forceUpdate(props, context) {
-    const asyncBody = this.observe(props, context);
+  forceUpdate(props) {
+    const asyncBody = this.observe(props);
 
     this.iterator = asyncBody;
 
@@ -70,17 +70,17 @@ export default class Coroutine extends Component {
 
   componentDidMount() {
     this.isComponentMounted = true;
-    return this.forceUpdate(this.props, this.context);
+    return this.forceUpdate(this.props);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     if (!isEqual(this.props, nextProps)) {
       if (this.iterator && this.iterator.return) {
         this.iterator.return();
       }
 
       if (this.isComponentMounted) {
-        this.forceUpdate(nextProps, nextContext);
+        this.forceUpdate(nextProps);
       }
     }
   }
