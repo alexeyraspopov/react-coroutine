@@ -44,6 +44,7 @@ export default Coroutine.create(PokemonInfoPage);
 
 ```javascript
 function* MovieInfoLoader({ movieId }) {
+  // Assuming cache.read() return a value from cache or Promise
   const movieData = yield movieCache.read(movieId);
   return <MovieInfo data={movieData} />;
 }
