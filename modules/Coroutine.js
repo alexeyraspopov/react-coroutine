@@ -1,36 +1,26 @@
 import { Component } from 'react';
 import isEqual from 'shallowequal';
 
-export default class Coroutine extends Component {
-  static create(asyncFn) {
-    return class AsyncComponent extends Coroutine {
-      static get contextTypes() {
-        return asyncFn.contextTypes;
-      }
+export default { create };
 
-      static get displayName() {
-        return `Coroutine(${asyncFn.name})`;
-      }
+function create(asyncFn) {
+  let displayName = asyncFn.name || asyncFn.displayName || 'Anonymous';
+  return class extends Coroutine {
+    static get displayName() {
+      return `Coroutine(${displayName})`;
+    }
 
-      observe(props, context) {
-        return asyncFn(props, context);
-      }
-
-      render() {
-        return this.state.data;
-      }
+    observe(props) {
+      return asyncFn(props);
     }
   }
+}
 
-  static get displayName() {
-    return `Coroutine(${this.name})`;
-  }
-
-  constructor(props, context) {
-    super(props, context);
+class Coroutine extends Component {
+  constructor(props) {
+    super(props);
     this.state = { data: null };
     this.iterator = null;
-    this.forceUpdateHelper = this.forceUpdate.bind(this);
     this.isComponentMounted = false;
   }
 
@@ -50,21 +40,43 @@ export default class Coroutine extends Component {
         }
       });
     } else {
-      const getNextBody = () => {
-        this.iterator.next().then((data) => {
-          if (!this.isComponentMounted || this.iterator !== asyncBody) {
-            return;
+      function resolveSyncIterator(i, step, cb) {
+        if (!step.done) {
+          if (step.value && typeof step.value.then === 'function') {
+            step.value.then(data => resolveSyncIterator(i, i.next(data), cb));
+          } else {
+            resolveSyncIterator(i, i.next(step.value), cb);
           }
+        } else {
+          cb(step.value);
+        }
+      };
 
+      function resolveAsyncIterator(i, step, cb) {
+        step.then((data) => {
           if (data.value !== undefined) {
-            this.setState(() => ({ data: data.value }));
+            cb(data.value);
           }
 
-          return !data.done && getNextBody();
+          return !data.done && resolveAsyncIterator(i, i.next(), cb);
         });
       };
 
-      getNextBody();
+      function resolveIterator(iterator, instance) {
+        const step = iterator.next();
+
+        const updater = (data) => {
+          return instance.isComponentMounted && instance.setState({ data });
+        };
+
+        if (typeof step.then === 'function') {
+          resolveAsyncIterator(iterator, step, updater);
+        } else {
+          resolveSyncIterator(iterator, step, updater);
+        }
+      };
+
+      resolveIterator(this.iterator, this);
     }
   }
 
@@ -94,6 +106,6 @@ export default class Coroutine extends Component {
   }
 
   render() {
-    throw new Error('Coroutine::render should be implemented by a subclass');
+    return this.state.data;
   }
 }
