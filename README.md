@@ -47,6 +47,8 @@ function* MovieInfoLoader({ movieId }) {
   const movieData = yield movieCache.read(movieId);
   return <MovieInfo data={movieData} />;
 }
+
+export default Coroutine.create(MovieInfoLoader);
 ```
 
 ## Usage
