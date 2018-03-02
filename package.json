@@ -23,8 +23,10 @@
   "author": "Alexey Raspopov",
   "license": "MIT",
   "dependencies": {
-    "react": "15.x",
     "shallowequal": "~1.0.1"
+  },
+  "peerDependencies": {
+    "react": "~16.2.0"
   },
   "devDependencies": {
     "babel-cli": "6.x",
@@ -37,7 +39,7 @@
     "babel-preset-react": "6.x",
     "babel-preset-stage-3": "6.x",
     "jest-cli": "15.x",
-    "react-test-renderer": "15.x",
+    "react-test-renderer": "~16.2.0",
     "rollup": "0.41.x",
     "rollup-plugin-babel": "2.x"
   }
