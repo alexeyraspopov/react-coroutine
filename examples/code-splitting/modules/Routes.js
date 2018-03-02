@@ -2,6 +2,7 @@ import React from 'react';
 import Coroutine from 'react-coroutine';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Pokemons from './PokemonAPI';
+import Placeholder from './Placeholder';
 
 /* Routes are using wrapped by Coroutine components for the sake of
    async functions and generators usage. */
@@ -35,9 +36,13 @@ async function* PokemonInfoLoader({ match }) {
   /* This request can also be cached but that's API's implementation detail.
      For the example purpose, it just does new request all the time. */
   const pokemonInfo = Pokemons.retrieve(match.params.pokemonId);
-  /* Since API request takes time, we show a pending message immediately
+  /* Since API request takes time sometimes, we show a pending message
      and then wait for requests resolving. */
-  yield <p>Loading...</p>;
+  yield (
+    <Placeholder delay={2000}>
+      <p>Loading...</p>
+    </Placeholder>
+  );
   /* Promise.all is used pretty much for example purpose. However, it's
      efficient way to make concurrent requests. */
   const [{ default: PokemonInfo }, data] = await Promise.all([module, pokemonInfo]);
