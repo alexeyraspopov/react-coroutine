@@ -1,11 +1,11 @@
-# react-coroutine
+# React Coroutine
 
     npm install react-coroutine
 
 > **Coroutines** are computer program components that generalize subroutines for nonpreemptive multitasking, by allowing multiple entry points for suspending and resuming execution at certain locations. Coroutines are well-suited for implementing more familiar program components such as cooperative tasks, exceptions, event loop, iterators, infinite lists and pipes.  
 > — _[Wikipedia](https://en.wikipedia.org/wiki/Coroutine)_
 
-Use async [functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) and [generators](https://github.com/tc39/proposal-async-iteration) to render React components based on async state.
+Use [generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*), [async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), and [async generators](https://github.com/tc39/proposal-async-iteration) to render React components based on async state.
 
 ```javascript
 import React from 'react';
