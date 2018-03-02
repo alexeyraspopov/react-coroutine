@@ -1,3 +1,12 @@
+## react-coroutine v2.0.0
+
+ * Remove `context` argument from coroutine signature (recommended to switch to the new Context API)
+ * `Coroutine` is only an object with `create()` factory method (breaking change for `v2.0.0-alpha.2`)
+ * Use `pkg.module` instead of `jsnext:main`
+ * Build correct ES Module artifact
+ * Move `react` to `peerDependencies` and update the range to `~16.2.0`
+ * Allow the use of sync generators that can yield possible Promise values
+
 ## react-coroutine v2.0.0-alpha.2
 
  * Remove `getVariables` mechanism
