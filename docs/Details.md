@@ -42,16 +42,3 @@ Worth mentioning, `for..await` also can be used for producing content over time.
       for await (const event of stream)
         yield <EventInfo event={event} />;
     }
-
-## Using context
-
-React Context is [accessible](https://facebook.github.io/react/docs/context.html#referencing-context-in-stateless-functional-components) in the same way as for stateless functional components:
-
-    async function* SomeCoroutine(props, context) {
-      for await (const message of context.dispatcher)
-        yield <SomeContent message={message} {...props} >;
-    }
-
-    SomeCoroutine.contextTypes = {
-      dispatcher: () => null
-    };
