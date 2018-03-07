@@ -24,11 +24,11 @@ class Coroutine extends Component {
   }
 
   forceUpdate(props) {
-    const asyncBody = this.observe(props);
+    let asyncBody = this.observe(props);
 
     this.iterator = asyncBody;
 
-    const updater = data => {
+    let updater = data => {
       if (this.isComponentMounted && this.iterator === asyncBody) {
         this.setState({ data });
       }
@@ -38,7 +38,7 @@ class Coroutine extends Component {
       // asyncFn is Async Function, awaiting for the final result
       asyncBody.then(updater);
     } else {
-      const step = this.iterator.next();
+      let step = this.iterator.next();
 
       if (isPromiseLike(step)) {
         // asyncFn is Async Generator, rendering every time it yields

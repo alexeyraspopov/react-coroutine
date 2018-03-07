@@ -21,7 +21,7 @@ export default (
 async function PokemonListLoader() {
   /* Module is an object that keeps all exports from particular file.
      You can think about the result as `import * as module from '...'`.*/
-  const { default: PokemonList } = await import('./PokemonList');
+  let { default: PokemonList } = await import('./PokemonList');
   return <PokemonList />;
 }
 
@@ -32,10 +32,10 @@ async function* PokemonInfoLoader({ match }) {
   /* This component is rendered every time the user opens a pokemon profile.
      However, `PokemonInfo` component will be loaded only once. After first
      usage `import('./PokemonInfo')` just returns resolved promise with module. */
-  const module = import('./PokemonInfo');
+  let module = import('./PokemonInfo');
   /* This request can also be cached but that's API's implementation detail.
      For the example purpose, it just does new request all the time. */
-  const pokemonInfo = Pokemons.retrieve(match.params.pokemonId);
+  let pokemonInfo = Pokemons.retrieve(match.params.pokemonId);
   /* Since API request takes time sometimes, we show a pending message
      and then wait for requests resolving. */
   yield (
@@ -45,6 +45,6 @@ async function* PokemonInfoLoader({ match }) {
   );
   /* Promise.all is used pretty much for example purpose. However, it's
      efficient way to make concurrent requests. */
-  const [{ default: PokemonInfo }, data] = await Promise.all([module, pokemonInfo]);
+  let [{ default: PokemonInfo }, data] = await Promise.all([module, pokemonInfo]);
   return <PokemonInfo data={data} />;
 }

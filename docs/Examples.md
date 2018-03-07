@@ -20,15 +20,15 @@ An example of coroutines usage for async data fetching and dynamic imports.
     );
 
     async function PokemonListLoader() {
-      const { default: PokemonList } = await import('./PokemonList');
+      let { default: PokemonList } = await import('./PokemonList');
       return <PokemonList />;
     }
 
     async function* PokemonInfoLoader({ match }) {
-      const module = import('./PokemonInfo');
-      const pokemonInfo = Pokemons.retrieve(match.params.pokemonId);
+      let module = import('./PokemonInfo');
+      let pokemonInfo = Pokemons.retrieve(match.params.pokemonId);
       yield <p>Loading...</p>;
-      const [{ default: PokemonInfo }, data] = await Promise.all([module, pokemonInfo]);
+      let [{ default: PokemonInfo }, data] = await Promise.all([module, pokemonInfo]);
       return <PokemonInfo data={data} />;
     }
 
@@ -50,7 +50,7 @@ An example of progressive rendering with loading spinner and requests debouncing
       yield <p>Searching {query}...</p>;
 
       try {
-        const { results } = await SearchAPI.retrieve(query);
+        let { results } = await SearchAPI.retrieve(query);
         return <SearchResults results={results} />;
       } catch (error) {
         return <ErrorMessage error={error} />;

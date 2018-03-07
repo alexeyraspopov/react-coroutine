@@ -8,7 +8,7 @@ class Search {
 
   async retrieve(query) {
     /* npms.io search API is used in this example. Good stuff.*/
-    const response = await fetch(`https://api.npms.io/v2/search?from=0&size=25&q=${query}`);
+    let response = await fetch(`https://api.npms.io/v2/search?from=0&size=25&q=${query}`);
 
     if (response.ok) {
       return response.json();

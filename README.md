@@ -16,7 +16,7 @@ import Coroutine from 'react-coroutine';
 async function UserListContainer() {
   try {
     // Wait for async data and render it in the same way as plain components
-    const users = await Users.retrieve();
+    let users = await Users.retrieve();
     return <UserList users={users} />;
   } catch (error) {
     // Handle failures in place with just JavaScript tools
@@ -33,8 +33,8 @@ async function* PokemonInfoPage({ pokemonId, pokemonName }) {
   yield <p>Loading {pokemonName} info...</p>;
 
   // Easily import components asynchronously and render them on demand
-  const { default: PokemonInfo } = await import('./PokemonInfo.react');
-  const data = await PokemonAPI.retrieve(pokemonId);
+  let { default: PokemonInfo } = await import('./PokemonInfo.react');
+  let data = await PokemonAPI.retrieve(pokemonId);
 
   return <PokemonInfo data={data} />;
 }
@@ -45,7 +45,7 @@ export default Coroutine.create(PokemonInfoPage);
 ```javascript
 function* MovieInfoLoader({ movieId }) {
   // Assuming cache.read() return a value from cache or Promise
-  const movieData = yield movieCache.read(movieId);
+  let movieData = yield movieCache.read(movieId);
   return <MovieInfo data={movieData} />;
 }
 

@@ -6,7 +6,7 @@ export default class AsyncQueue {
 
   enqueue(value) {
     if (this.resolvers.length > 0) {
-      const resolve = this.resolvers.shift();
+      let resolve = this.resolvers.shift();
       resolve({ value, done: false });
     } else {
       this.values.push(value);
@@ -16,7 +16,7 @@ export default class AsyncQueue {
   next() {
     return new Promise(resolve => {
       if (this.values.length > 0) {
-        const value = this.values.shift();
+        let value = this.values.shift();
         resolve({ value, done: false });
       } else {
         this.resolvers.push(resolve);

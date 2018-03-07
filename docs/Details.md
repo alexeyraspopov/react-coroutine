@@ -4,8 +4,8 @@ The power of coroutines allows to write code in synchronous style and be able to
 
     async function doSomethingComplex(data) {
       try {
-        const response = await postData(data);
-        const status = await getStatus(response.headers.Location);
+        let response = await postData(data);
+        let status = await getStatus(response.headers.Location);
         return status;
       } catch (error) {
         notify('Unable to perform the action', error);
@@ -29,16 +29,16 @@ In the same way as async functions work, async generators are executed when a co
     async function* MultipleStepsRender() {
       yield <p>Loading...</p>;
 
-      const firstPart = await fetchSomeData();
+      let firstPart = await fetchSomeData();
       yield <DataList first={firstPart} />;
 
-      const secondPart = await fetchMoreData();
+      let secondPart = await fetchMoreData();
       return <DataList first={firstPart} second={secondPart} />;
     }
 
 Worth mentioning, `for..await` also can be used for producing content over time.
 
     async function* EventMonitor({ stream }) {
-      for await (const event of stream)
+      for await (let event of stream)
         yield <EventInfo event={event} />;
     }

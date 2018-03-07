@@ -9,7 +9,7 @@ export default class App extends React.Component {
   }
 
   handleEvent(event) {
-    const query = event.target.value;
+    let query = event.target.value;
     this.setState(() => ({ query }));
   }
 

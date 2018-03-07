@@ -8,12 +8,12 @@ describe('Coroutine', () => {
       return <p>test</p>;
     }
 
-    const TestComponent = Coroutine.create(render);
-    const tree = Renderer.create(<TestComponent />);
+    let TestComponent = Coroutine.create(render);
+    let tree = Renderer.create(<TestComponent />);
 
     expect(tree.toJSON()).toEqual(null);
 
-    const success = await Renderer.create(<p>test</p>);
+    let success = await Renderer.create(<p>test</p>);
     expect(tree.toJSON()).toEqual(success.toJSON());
   });
 
@@ -24,13 +24,13 @@ describe('Coroutine', () => {
       return <p>Done!</p>;
     }
 
-    const TestComponent = Coroutine.create(render);
-    const tree = await Renderer.create(<TestComponent />);
+    let TestComponent = Coroutine.create(render);
+    let tree = await Renderer.create(<TestComponent />);
 
-    const first = await Renderer.create(<p>Loading...</p>);
+    let first = await Renderer.create(<p>Loading...</p>);
     expect(tree.toJSON()).toEqual(first.toJSON());
 
-    const second = await Renderer.create(<p>Done!</p>);
+    let second = await Renderer.create(<p>Done!</p>);
     expect(tree.toJSON()).toEqual(second.toJSON());
   });
 

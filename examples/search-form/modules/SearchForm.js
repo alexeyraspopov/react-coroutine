@@ -25,7 +25,7 @@ async function* SearchForm({ query }) {
   try {
     /* This piece is the same as with async functions. Some data is fetched and
        used with another plain functional component. */
-    const { results } = await SearchAPI.retrieve(query);
+    let { results } = await SearchAPI.retrieve(query);
     return <SearchResults results={results} />;
   } catch (error) {
     return <ErrorMessage error={error} />;
