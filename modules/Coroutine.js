@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import isEqual from 'shallowequal';
 
 export default { create };
 
@@ -22,10 +21,6 @@ class Coroutine extends Component {
     this.state = { data: null };
     this.iterator = null;
     this.isComponentMounted = false;
-  }
-
-  observe() {
-    throw new Error('Coroutine::observe should be implemented by a subclass');
   }
 
   forceUpdate(props) {
@@ -109,4 +104,20 @@ function resolveAsyncIterator(i, step, cb) {
 
 function isPromiseLike(target) {
   return target && typeof target.then === 'function';
+}
+
+function isEqual(a, b) {
+  return a === b || keysEqual(a, b) || keysEqual(b, a);
+}
+
+function keysEqual(a, b) {
+  for (let k in a) {
+    if (a.hasOwnProperty(k)) {
+      if (!b.hasOwnProperty(k) || a[k] !== b[k]) {
+        return false;
+      }
+    }
+  }
+
+  return true;
 }

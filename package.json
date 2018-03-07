@@ -30,9 +30,6 @@
   ],
   "author": "Alexey Raspopov",
   "license": "MIT",
-  "dependencies": {
-    "shallowequal": "~1.0.1"
-  },
   "peerDependencies": {
     "react": "~16.2.0"
   },
@@ -54,7 +51,7 @@
   },
   "size-limit": [
     {
-      "limit": "1.08 KB",
+      "limit": "943 B",
       "path": "lib/Coroutine.js"
     }
   ]
