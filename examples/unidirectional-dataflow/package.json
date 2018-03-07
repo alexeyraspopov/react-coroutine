@@ -1,7 +1,7 @@
 {
-  "name": "search-form",
+  "name": "unidirectional-dataflow",
   "version": "0.0.1",
-  "description": "Search functionality example with React Coroutine",
+  "description": "Unidirectional Dataflow pattern example with React Coroutine",
   "main": "index.js",
   "dependencies": {
     "create-react-context": "~0.2.1",
