@@ -4,6 +4,11 @@
   "description": "React Components as Coroutines",
   "main": "lib/Coroutine.js",
   "module": "lib/Coroutine.module.js",
+  "files": [
+    "lib/",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "test": "jest",
     "size": "size-limit",
