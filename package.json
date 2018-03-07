@@ -6,6 +6,7 @@
   "module": "lib/Coroutine.module.js",
   "scripts": {
     "test": "jest",
+    "size": "size-limit",
     "buildcjs": "rollup --format cjs --config rollup.config.js modules/Coroutine.js > lib/Coroutine.js",
     "buildesm": "rollup --format es --config rollup.config.js modules/Coroutine.js > lib/Coroutine.module.js",
     "prepublish": "npm run buildcjs && npm run buildesm"
@@ -43,6 +44,13 @@
     "jest-cli": "15.x",
     "react-test-renderer": "~16.2.0",
     "rollup": "0.41.x",
-    "rollup-plugin-babel": "2.x"
-  }
+    "rollup-plugin-babel": "2.x",
+    "size-limit": "~0.16.1"
+  },
+  "size-limit": [
+    {
+      "limit": "1.08 KB",
+      "path": "lib/Coroutine.js"
+    }
+  ]
 }
