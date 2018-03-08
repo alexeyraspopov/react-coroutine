@@ -36,16 +36,16 @@ class Coroutine extends Component {
 
     if (isPromiseLike(asyncBody)) {
       // asyncFn is Async Function, awaiting for the final result
-      asyncBody.then(updater);
+      return asyncBody.then(updater);
     } else {
       let step = this.iterator.next();
 
       if (isPromiseLike(step)) {
         // asyncFn is Async Generator, rendering every time it yields
-        resolveAsyncIterator(this.iterator, step, updater);
+        return resolveAsyncIterator(this.iterator, step, updater);
       } else {
         // asyncFn is Sync Generator, rendering the final result, awaiting yielded promises
-        resolveSyncIterator(this.iterator, step, updater);
+        return resolveSyncIterator(this.iterator, step, updater);
       }
     }
   }
@@ -83,12 +83,12 @@ class Coroutine extends Component {
 function resolveSyncIterator(i, step, cb) {
   if (!step.done) {
     if (isPromiseLike(step.value)) {
-      step.value.then(data => resolveSyncIterator(i, i.next(data), cb));
+      return step.value.then(data => resolveSyncIterator(i, i.next(data), cb));
     } else {
-      resolveSyncIterator(i, i.next(step.value), cb);
+      return resolveSyncIterator(i, i.next(step.value), cb);
     }
   } else {
-    cb(step.value);
+    return cb(step.value);
   }
 }
 
