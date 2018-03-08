@@ -3,81 +3,74 @@ import { Component } from 'react';
 export default { create };
 
 function create(asyncFn) {
-  let displayName = asyncFn.name || asyncFn.displayName || 'Anonymous';
-  return class extends Coroutine {
-    static get displayName() {
-      return `Coroutine(${displayName})`;
+  class Coroutine extends Component {
+    constructor(props) {
+      super(props);
+      this.state = { data: null };
+      this.iterator = null;
+      this.isComponentMounted = false;
     }
 
-    observe(props) {
-      return asyncFn(props);
-    }
-  };
-}
+    forceUpdate(props) {
+      let asyncBody = asyncFn(props);
 
-class Coroutine extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: null };
-    this.iterator = null;
-    this.isComponentMounted = false;
-  }
+      this.iterator = asyncBody;
 
-  forceUpdate(props) {
-    let asyncBody = this.observe(props);
+      let updater = data => {
+        if (this.isComponentMounted && this.iterator === asyncBody) {
+          this.setState({ data });
+        }
+      };
 
-    this.iterator = asyncBody;
-
-    let updater = data => {
-      if (this.isComponentMounted && this.iterator === asyncBody) {
-        this.setState({ data });
-      }
-    };
-
-    if (isPromiseLike(asyncBody)) {
-      // asyncFn is Async Function, awaiting for the final result
-      return asyncBody.then(updater);
-    } else {
-      let step = this.iterator.next();
-
-      if (isPromiseLike(step)) {
-        // asyncFn is Async Generator, rendering every time it yields
-        return resolveAsyncIterator(this.iterator, step, updater);
+      if (isPromiseLike(asyncBody)) {
+        // asyncFn is Async Function, awaiting for the final result
+        return asyncBody.then(updater);
       } else {
-        // asyncFn is Sync Generator, rendering the final result, awaiting yielded promises
-        return resolveSyncIterator(this.iterator, step, updater);
+        let step = this.iterator.next();
+
+        if (isPromiseLike(step)) {
+          // asyncFn is Async Generator, rendering every time it yields
+          return resolveAsyncIterator(this.iterator, step, updater);
+        } else {
+          // asyncFn is Sync Generator, rendering the final result, awaiting yielded promises
+          return resolveSyncIterator(this.iterator, step, updater);
+        }
       }
     }
-  }
 
-  componentDidMount() {
-    this.isComponentMounted = true;
-    return this.forceUpdate(this.props);
-  }
+    componentDidMount() {
+      this.isComponentMounted = true;
+      return this.forceUpdate(this.props);
+    }
 
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(this.props, nextProps)) {
+    componentWillReceiveProps(nextProps) {
+      if (!isEqual(this.props, nextProps)) {
+        if (this.iterator && this.iterator.return) {
+          this.iterator.return();
+        }
+
+        if (this.isComponentMounted) {
+          this.forceUpdate(nextProps);
+        }
+      }
+    }
+
+    componentWillUnmount() {
       if (this.iterator && this.iterator.return) {
         this.iterator.return();
       }
 
-      if (this.isComponentMounted) {
-        this.forceUpdate(nextProps);
-      }
+      this.isComponentMounted = false;
+    }
+
+    render() {
+      return this.state.data;
     }
   }
 
-  componentWillUnmount() {
-    if (this.iterator && this.iterator.return) {
-      this.iterator.return();
-    }
+  Coroutine.displayName = asyncFn.name || asyncFn.displayName || 'Anonymous';
 
-    this.isComponentMounted = false;
-  }
-
-  render() {
-    return this.state.data;
-  }
+  return Coroutine;
 }
 
 function resolveSyncIterator(i, step, cb) {

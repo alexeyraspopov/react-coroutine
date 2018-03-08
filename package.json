@@ -51,7 +51,7 @@
   },
   "size-limit": [
     {
-      "limit": "943 B",
+      "limit": "765 B",
       "path": "lib/Coroutine.js"
     }
   ]
