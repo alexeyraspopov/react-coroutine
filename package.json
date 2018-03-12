@@ -2,6 +2,10 @@
   "name": "react-coroutine",
   "version": "2.0.0",
   "description": "React Components as Coroutines",
+  "author": "Alexey Raspopov",
+  "license": "MIT",
+  "homepage": "https://react-coroutine.js.org/",
+  "repository": "alexeyraspopov/react-coroutine",
   "main": "build/react-coroutine.js",
   "module": "build/react-coroutine.module.js",
   "files": [
@@ -9,8 +13,6 @@
     "LICENSE",
     "CHANGELOG.md"
   ],
-  "homepage": "https://react-coroutine.js.org/",
-  "repository": "alexeyraspopov/react-coroutine",
   "keywords": [
     "async",
     "react",
@@ -21,8 +23,6 @@
     "stateful",
     "iterator"
   ],
-  "author": "Alexey Raspopov",
-  "license": "MIT",
   "scripts": {
     "test": "jest --coverage",
     "size": "size-limit",
@@ -64,7 +64,11 @@
   "size-limit": [
     {
       "limit": "765 B",
-      "path": "lib/Coroutine.js"
+      "path": "build/react-coroutine.js"
+    },
+    {
+      "limit": "770 B",
+      "path": "build/react-coroutine.module.js"
     }
   ]
 }
