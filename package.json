@@ -2,20 +2,13 @@
   "name": "react-coroutine",
   "version": "2.0.0",
   "description": "React Components as Coroutines",
-  "main": "lib/Coroutine.js",
-  "module": "lib/Coroutine.module.js",
+  "main": "build/react-coroutine.js",
+  "module": "build/react-coroutine.module.js",
   "files": [
-    "lib/",
+    "build/",
     "LICENSE",
     "CHANGELOG.md"
   ],
-  "scripts": {
-    "test": "jest",
-    "size": "size-limit",
-    "buildcjs": "rollup --format cjs --config rollup.config.js modules/Coroutine.js > lib/Coroutine.js",
-    "buildesm": "rollup --format es --config rollup.config.js modules/Coroutine.js > lib/Coroutine.module.js",
-    "prepublish": "npm run buildcjs && npm run buildesm"
-  },
   "homepage": "https://react-coroutine.js.org/",
   "repository": "alexeyraspopov/react-coroutine",
   "keywords": [
@@ -30,6 +23,11 @@
   ],
   "author": "Alexey Raspopov",
   "license": "MIT",
+  "scripts": {
+    "test": "jest --coverage",
+    "size": "size-limit",
+    "prepublish": "rollup --config rollup.config.js"
+  },
   "peerDependencies": {
     "react": "~16.2.0"
   },
