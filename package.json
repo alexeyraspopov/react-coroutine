@@ -26,7 +26,7 @@
   "scripts": {
     "test": "jest --coverage",
     "ci": "sh scripts/integration.sh",
-    "prepublish": "rollup --config rollup.config.js"
+    "prepublish": "rollup --config scripts/rollup.config.js"
   },
   "peerDependencies": {
     "react": "~16.2.0"
