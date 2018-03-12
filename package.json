@@ -25,8 +25,7 @@
   ],
   "scripts": {
     "test": "jest --coverage",
-    "size": "size-limit",
-    "ci": "jest --ci --testResultsProcessor 'jest-junit'",
+    "ci": "sh scripts/integration.sh",
     "prepublish": "rollup --config rollup.config.js"
   },
   "peerDependencies": {
