@@ -26,6 +26,7 @@
   "scripts": {
     "test": "jest --coverage",
     "size": "size-limit",
+    "ci": "jest --ci --testResultsProcessor 'jest-junit'",
     "prepublish": "rollup --config rollup.config.js"
   },
   "peerDependencies": {
@@ -40,6 +41,7 @@
     "babel-preset-react": "~6.24.1",
     "babel-preset-stage-3": "~6.24.1",
     "jest": "~22.4.2",
+    "jest-junit": "~3.6.0",
     "react": "~16.2.0",
     "react-test-renderer": "~16.2.0",
     "rollup": "~0.56.5",
