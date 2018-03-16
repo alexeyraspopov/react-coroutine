@@ -90,6 +90,22 @@ describe('Coroutine', () => {
     expect(trap).not.toHaveBeenCalled();
   });
 
+  it('should do nothing about the same props', async () => {
+    let trap = jest.fn();
+
+    async function render({ number }) {
+      trap();
+      return <p>Test</p>;
+    }
+
+    let TestComponent = Coroutine.create(render);
+    let tree = await Renderer.create(<TestComponent number={13} />);
+
+    await tree.update(<TestComponent number={13} />);
+
+    expect(trap).toHaveBeenCalledTimes(1);
+  });
+
   it('should cancel async iterator on unmount', async () => {
     let getData = jest.fn(n => Promise.resolve(n * 2));
     let trap = jest.fn();
