@@ -38,13 +38,26 @@
     "babel-preset-env": "~1.6.1",
     "babel-preset-react": "~6.24.1",
     "babel-preset-stage-3": "~6.24.1",
+    "enzyme": "~3.3.0",
+    "enzyme-adapter-react-16": "~1.1.1",
+    "enzyme-to-json": "~3.3.1",
     "jest": "~22.4.2",
     "jest-junit": "~3.6.0",
     "react": "~16.2.0",
+    "react-dom": "~16.2.0",
     "react-test-renderer": "~16.2.0",
     "rollup": "~0.56.5",
     "rollup-plugin-babel": "~3.0.3",
     "size-limit": "~0.16.1"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupTestFrameworkScriptFile": "./scripts/setup.jest.js",
+    "collectCoverageFrom": [
+      "modules/*.js"
+    ]
   },
   "babel": {
     "presets": [
