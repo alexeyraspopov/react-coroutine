@@ -5,7 +5,8 @@
 > **Coroutines** are computer program components that generalize subroutines for nonpreemptive multitasking, by allowing multiple entry points for suspending and resuming execution at certain locations. Coroutines are well-suited for implementing more familiar program components such as cooperative tasks, exceptions, event loop, iterators, infinite lists and pipes.  
 > — _[Wikipedia](https://en.wikipedia.org/wiki/Coroutine)_
 
-Use [generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*), [async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), and [async generators](https://github.com/tc39/proposal-async-iteration) to render React components based on async state.
+Use [generators][1], [async functions][2], and [async generators][3] to render
+React components based on async state.
 
 ```javascript
 import React from 'react';
@@ -73,7 +74,10 @@ bug fixes and improvements, and how to build and test your changes.
 
 ## List of projects that can be built with react-coroutine
 
-React Coroutine attempts to use basic language features for the sake of solving problems that are usually solved with APIs and new abstractions that require particular knowledge about them and sometimes about internal processes (leaky abstractions).
+React Coroutine attempts to use basic language features for the sake of solving
+problems that are usually solved with APIs and new abstractions that require
+particular knowledge about them and sometimes about internal processes (leaky
+abstractions).
 
  * [react-async](https://github.com/andreypopp/react-async)
  * [react-refetch](https://github.com/heroku/react-refetch)
@@ -85,3 +89,7 @@ React Coroutine attempts to use basic language features for the sake of solving 
  * [loadable-components](https://github.com/smooth-code/loadable-components)
  * [smalldots](https://github.com/smalldots/smalldots)
  * [holen](https://github.com/tkh44/holen)
+
+ [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
+ [2]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+ [3]: https://github.com/tc39/proposal-async-iteration
