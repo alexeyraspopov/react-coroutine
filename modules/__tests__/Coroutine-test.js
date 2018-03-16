@@ -61,4 +61,32 @@ describe('Coroutine', () => {
     let result = await Renderer.create(<p>{1}, {2}</p>);
     expect(tree.toJSON()).toEqual(result.toJSON());
   });
+
+  it('should restart coroutine on new props', async () => {
+    let getData = jest.fn(n => Promise.resolve(n * 2));
+    let trap = jest.fn();
+
+    async function* render({ number }) {
+      let data = await getData(number);
+      yield <p>{data}</p>;
+      await Promise.resolve();
+      yield <p>Another</p>;
+      trap();
+      return <p>Done</p>;
+    }
+
+    let TestComponent = Coroutine.create(render);
+    let tree = await Renderer.create(<TestComponent number={13} />);
+
+    let first = await Renderer.create(<p>26</p>);
+    expect(tree.toJSON()).toEqual(first.toJSON());
+    expect(getData).toHaveBeenCalledWith(13);
+
+    await tree.update(<TestComponent number={20} />);
+
+    let second = await Renderer.create(<p>40</p>);
+    expect(tree.toJSON()).toEqual(second.toJSON());
+    expect(getData).toHaveBeenCalledWith(20);
+    expect(trap).not.toHaveBeenCalled();
+  });
 });
