@@ -62,6 +62,22 @@ describe('Coroutine', () => {
     expect(tree.toJSON()).toEqual(result.toJSON());
   });
 
+  it('should rethrow exceptions back to generator', async () => {
+    function* render() {
+      try {
+        yield Promise.reject(new Error('Boom'));
+      } catch (error) {
+        return <p>{error.message}</p>;
+      }
+    }
+
+    let TestComponent = Coroutine.create(render);
+    let tree = await Renderer.create(<TestComponent />);
+
+    let result = await Renderer.create(<p>Boom</p>);
+    expect(tree.toJSON()).toEqual(result.toJSON());
+  });
+
   it('should restart coroutine on new props', async () => {
     let getData = jest.fn(n => Promise.resolve(n * 2));
     let trap = jest.fn();

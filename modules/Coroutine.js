@@ -76,7 +76,9 @@ function create(asyncFn) {
 function resolveSyncIterator(i, step, cb) {
   if (!step.done) {
     if (isPromiseLike(step.value)) {
-      return step.value.then(data => resolveSyncIterator(i, i.next(data), cb));
+      return step.value
+        .then(data => resolveSyncIterator(i, i.next(data), cb))
+        .catch(error => resolveSyncIterator(i, i.throw(error), cb));
     } else {
       return resolveSyncIterator(i, i.next(step.value), cb);
     }
