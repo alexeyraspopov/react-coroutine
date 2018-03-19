@@ -62,7 +62,23 @@ describe('Coroutine', () => {
     expect(tree.toJSON()).toEqual(result.toJSON());
   });
 
-  it('should rethrow exceptions back to generator', async () => {
+  it('should rethrow exceptions back to generator in async mode', () => {
+    function* render() {
+      try {
+        yield new Error('Boom');
+      } catch (error) {
+        return <p>{error.message}</p>;
+      }
+    }
+
+    let TestComponent = Coroutine.create(render);
+    let tree = Renderer.create(<TestComponent />);
+
+    let result = Renderer.create(<p>Boom</p>);
+    expect(tree.toJSON()).toEqual(result.toJSON());
+  });
+
+  it('should rethrow exceptions back to generator in async mode', async () => {
     function* render() {
       try {
         yield Promise.reject(new Error('Boom'));

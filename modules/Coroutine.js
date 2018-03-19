@@ -80,7 +80,9 @@ function resolveSyncIterator(i, step, cb) {
         .then(data => resolveSyncIterator(i, i.next(data), cb))
         .catch(error => resolveSyncIterator(i, i.throw(error), cb));
     } else {
-      return resolveSyncIterator(i, i.next(step.value), cb);
+      let isErrorLike = step.value instanceof Error;
+      let nextStep = isErrorLike ? i.throw(step.value) : i.next(step.value);
+      return resolveSyncIterator(i, nextStep, cb);
     }
   } else {
     return cb(step.value);
