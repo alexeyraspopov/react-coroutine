@@ -62,11 +62,11 @@
   },
   "size-limit": [
     {
-      "limit": "765 B",
+      "limit": "776 B",
       "path": "build/react-coroutine.js"
     },
     {
-      "limit": "770 B",
+      "limit": "782 B",
       "path": "build/react-coroutine.module.js"
     }
   ]
