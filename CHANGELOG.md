@@ -1,3 +1,9 @@
+## react-coroutine v2.0.1
+
+ * Prevent rejected promises swallowing in sync generators
+ * Remove `shallowequal` dependency, decreasing the lib size
+ * Use `babel-preset-env` instead of `babel-preset-es2015` for building the lib
+
 ## react-coroutine v2.0.0
 
  * Remove `context` argument from coroutine signature (recommended to switch to the new Context API)
