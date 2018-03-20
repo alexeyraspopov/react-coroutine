@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Coroutine from 'react-coroutine';
-import AsyncQueue from './modules/AsyncQueue';
+import { AsyncQueue } from 'async-structure';
 import AppContext from './modules/AppContext';
 import AppStateRecord from './modules/AppStateRecord';
 import App from './modules/App';

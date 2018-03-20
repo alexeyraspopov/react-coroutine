@@ -4,6 +4,7 @@
   "description": "Unidirectional Dataflow pattern example with React Coroutine",
   "main": "index.js",
   "dependencies": {
+    "async-structure": "~0.1.0",
     "create-react-context": "~0.2.1",
     "dataclass": "~1.1.1",
     "react": "~16.2.0",
