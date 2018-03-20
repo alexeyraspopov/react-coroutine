@@ -2,44 +2,44 @@ import { Component } from 'react';
 
 export default { create };
 
-function create(asyncFn) {
+function create(coroutine) {
   class Coroutine extends Component {
     constructor(props) {
       super(props);
-      this.state = { data: null };
+      this.state = { view: null };
       this.iterator = null;
-      this.isComponentMounted = false;
+      this.mounted = false;
     }
 
     forceUpdate(props) {
-      let asyncBody = asyncFn(props);
+      let target = coroutine(props);
 
-      this.iterator = asyncBody;
+      this.iterator = target;
 
-      let updater = data => {
-        if (this.isComponentMounted && this.iterator === asyncBody) {
-          this.setState({ data });
+      let updater = view => {
+        if (this.mounted && this.iterator === target) {
+          this.setState({ view });
         }
       };
 
-      if (isPromiseLike(asyncBody)) {
-        // asyncFn is Async Function, awaiting for the final result
-        return asyncBody.then(updater);
+      if (isPromiseLike(target)) {
+        // coroutine is Async Function, awaiting for the final result
+        return target.then(updater);
       } else {
         let step = this.iterator.next();
 
         if (isPromiseLike(step)) {
-          // asyncFn is Async Generator, rendering every time it yields
+          // coroutine is Async Generator, rendering every time it yields
           return resolveAsyncIterator(this.iterator, step, updater);
         } else {
-          // asyncFn is Sync Generator, rendering the final result, awaiting yielded promises
+          // coroutine is Sync Generator, rendering the final result, awaiting yielded promises
           return resolveSyncIterator(this.iterator, step, updater);
         }
       }
     }
 
     componentDidMount() {
-      this.isComponentMounted = true;
+      this.mounted = true;
       return this.forceUpdate(this.props);
     }
 
@@ -49,7 +49,7 @@ function create(asyncFn) {
           this.iterator.return();
         }
 
-        if (this.isComponentMounted) {
+        if (this.mounted) {
           this.forceUpdate(nextProps);
         }
       }
@@ -60,15 +60,15 @@ function create(asyncFn) {
         this.iterator.return();
       }
 
-      this.isComponentMounted = false;
+      this.mounted = false;
     }
 
     render() {
-      return this.state.data;
+      return this.state.view;
     }
   }
 
-  Coroutine.displayName = asyncFn.name || asyncFn.displayName || 'Anonymous';
+  Coroutine.displayName = coroutine.name || coroutine.displayName || 'Anonymous';
 
   return Coroutine;
 }
