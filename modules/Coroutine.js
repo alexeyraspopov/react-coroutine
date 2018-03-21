@@ -1,9 +1,9 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 
 export default { create };
 
 function create(coroutine) {
-  class Coroutine extends Component {
+  class Coroutine extends PureComponent {
     constructor(props) {
       super(props);
       this.state = { view: null };
@@ -43,8 +43,8 @@ function create(coroutine) {
       return this.forceUpdate(this.props);
     }
 
-    componentWillReceiveProps(nextProps) {
-      if (!isEqual(this.props, nextProps)) {
+    componentDidUpdate(prevProps) {
+      if (!arePropsEqual(this.props, prevProps)) {
         if (this.iterator && this.iterator.return) {
           this.iterator.return();
         }
@@ -103,8 +103,8 @@ function isPromiseLike(target) {
   return target && typeof target.then === 'function';
 }
 
-function isEqual(a, b) {
-  return a === b || keysEqual(a, b) || keysEqual(b, a);
+function arePropsEqual(a, b) {
+  return keysEqual(a, b) || keysEqual(b, a);
 }
 
 function keysEqual(a, b) {
