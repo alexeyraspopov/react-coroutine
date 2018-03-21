@@ -11,7 +11,7 @@ function create(coroutine) {
       this.mounted = false;
     }
 
-    forceUpdate(props) {
+    iterate(props) {
       let target = coroutine(props);
 
       this.iterator = target;
@@ -40,7 +40,7 @@ function create(coroutine) {
 
     componentDidMount() {
       this.mounted = true;
-      return this.forceUpdate(this.props);
+      return this.iterate(this.props);
     }
 
     componentDidUpdate(prevProps) {
@@ -50,7 +50,7 @@ function create(coroutine) {
         }
 
         if (this.mounted) {
-          this.forceUpdate(nextProps);
+          this.iterate(this.props);
         }
       }
     }
