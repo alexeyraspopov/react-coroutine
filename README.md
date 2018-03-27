@@ -10,6 +10,12 @@ features like [generators][1], [async functions][2], and [async generators][3].
 
 No API or new abstractions to learn, only JavaScript code as it intended to be.
 
+## Motivation
+
+React Coroutine attempts to use basic and known language features for the sake
+of solving problems that are usually solved with APIs and new abstractions that
+require particular knowledge about them or, sometimes, about internal processes.
+
 ```javascript
 import React from 'react';
 import Coroutine from 'react-coroutine';
