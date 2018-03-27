@@ -74,16 +74,6 @@ website](https://www.contributor-covenant.org/) to learn more.
 Please read [the contributing guide](./CONTRIBUTING.md) to learn how to propose
 bug fixes and improvements, and how to build and test your changes.
 
-## List of projects that can be built with react-coroutine
-
-React Coroutine attempts to use basic language features for the sake of solving
-problems that are usually solved with APIs and new abstractions that require
-particular knowledge about them and sometimes about internal processes (leaky
-abstractions).
-
-Here are some examples of higher-level abstractions and APIs that can basically
-be built using React Coroutine as a part of your system: [react-async](https://github.com/andreypopp/react-async), [react-refetch](https://github.com/heroku/react-refetch), [react-transmit](https://github.com/RickWong/react-transmit), [react-loadable](https://github.com/thejameskyle/react-loadable), [react-resolver](https://github.com/ericclemmons/react-resolver), [react-controller](https://github.com/bradestey/react-controller), [react-async-component](https://github.com/ctrlplusb/react-async-component), [loadable-components](https://github.com/smooth-code/loadable-components), [smalldots](https://github.com/smalldots/smalldots), [holen](https://github.com/tkh44/holen).
-
  [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
  [2]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
  [3]: https://github.com/tc39/proposal-async-iteration
