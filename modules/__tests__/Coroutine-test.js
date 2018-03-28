@@ -150,7 +150,7 @@ describe('Coroutine', () => {
     let TestComponent = Coroutine.create(render);
     let tree = await Renderer.create(<TestComponent number={13} />);
 
-    await tree.update(<TestComponent number={13} />);
+    tree.update(<TestComponent number={13} />);
 
     expect(trap).toHaveBeenCalledTimes(1);
   });
@@ -163,8 +163,7 @@ describe('Coroutine', () => {
       let data = await getData(number);
       yield <p>{data}</p>;
       await Promise.resolve();
-      yield <p>Another</p>;
-      trap();
+      yield <p>Another {trap()}</p>;
       return <p>Done</p>;
     }
 
@@ -175,7 +174,7 @@ describe('Coroutine', () => {
     expect(tree.toJSON()).toEqual(first.toJSON());
     expect(getData).toHaveBeenCalledWith(13);
 
-    await tree.unmount();
+    tree.unmount();
     expect(trap).not.toHaveBeenCalled();
   });
 });
