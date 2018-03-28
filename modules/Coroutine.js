@@ -8,7 +8,6 @@ function create(coroutine) {
       super(props);
       this.state = { view: null };
       this.iterator = null;
-      this.mounted = false;
     }
 
     iterate(props) {
@@ -16,51 +15,35 @@ function create(coroutine) {
 
       this.iterator = target;
 
-      let updater = view => {
-        if (this.mounted && this.iterator === target) {
-          this.setState({ view });
-        }
-      };
+      let shouldStop = () => this.iterator !== target;
+      let updateView = view => this.setState({ view });
 
       if (isPromiseLike(target)) {
         // coroutine is Async Function, awaiting for the final result
-        return target.then(updater);
+        return target.then(value => shouldStop() || updateView(value));
       } else {
         let step = this.iterator.next();
 
         if (isPromiseLike(step)) {
           // coroutine is Async Generator, rendering every time it yields
-          return resolveAsyncIterator(this.iterator, step, updater);
+          return resolveAsyncIterator(this.iterator, step, updateView, shouldStop);
         } else {
           // coroutine is Sync Generator, rendering the final result, awaiting yielded promises
-          return resolveSyncIterator(this.iterator, step, updater);
+          return resolveSyncIterator(this.iterator, step, updateView, shouldStop);
         }
       }
     }
 
     componentDidMount() {
-      this.mounted = true;
       return this.iterate(this.props);
     }
 
     componentDidUpdate(prevProps) {
-      if (!arePropsEqual(this.props, prevProps)) {
-        if (this.iterator && this.iterator.return) {
-          this.iterator.return();
-        }
-
-        if (this.mounted) {
-          this.iterate(this.props);
-        }
-      }
+      return arePropsEqual(this.props, prevProps) || this.iterate(this.props);
     }
 
     componentWillUnmount() {
-      if (this.iterator && this.iterator.return) {
-        this.iterator.return();
-      }
-
-      this.mounted = false;
+      this.iterator = null;
     }
 
     render() {
@@ -73,29 +56,36 @@ function create(coroutine) {
   return Coroutine;
 }
 
-function resolveSyncIterator(i, step, cb) {
+function resolveSyncIterator(i, step, cb, shouldStop) {
+  if (shouldStop()) {
+    return i.return();
+  }
   if (!step.done) {
     if (isPromiseLike(step.value)) {
       return step.value
-        .then(data => resolveSyncIterator(i, i.next(data), cb))
-        .catch(error => resolveSyncIterator(i, i.throw(error), cb));
+        .then(data => resolveSyncIterator(i, i.next(data), cb, shouldStop))
+        .catch(error => resolveSyncIterator(i, i.throw(error), cb, shouldStop));
     } else {
       let isErrorLike = step.value instanceof Error;
       let nextStep = isErrorLike ? i.throw(step.value) : i.next(step.value);
-      return resolveSyncIterator(i, nextStep, cb);
+      return resolveSyncIterator(i, nextStep, cb, shouldStop);
     }
   } else {
     return cb(step.value);
   }
 }
 
-function resolveAsyncIterator(i, step, cb) {
+function resolveAsyncIterator(i, step, cb, shouldStop) {
   step.then(data => {
+    if (shouldStop()) {
+      return i.return();
+    }
+
     if (data.value !== undefined) {
       cb(data.value);
     }
 
-    return !data.done && resolveAsyncIterator(i, i.next(), cb);
+    return !data.done && resolveAsyncIterator(i, i.next(), cb, shouldStop);
   });
 }
 
