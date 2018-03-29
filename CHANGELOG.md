@@ -1,3 +1,11 @@
+## react-coroutine v2.0.2
+
+ * Prevent usage of deprecated React lifecycle methods
+ * Switch to `PureComponent` for small optimizations
+ * Minor internal changes to improve iterators cancellation
+ * Fix exceptions throw in coroutines based on sync generators
+ * Update peer dependency range to support React versions higher than `16.2.0`
+
 ## react-coroutine v2.0.1
 
  * Prevent rejected promises swallowing in sync generators
