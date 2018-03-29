@@ -16,6 +16,8 @@ React Coroutine attempts to use basic and known language features for the sake
 of solving problems that are usually solved with APIs and new abstractions that
 require particular knowledge about them or, sometimes, about internal processes.
 
+## Examples
+
 ```javascript
 import React from 'react';
 import Coroutine from 'react-coroutine';
@@ -61,7 +63,7 @@ function* MovieInfoLoader({ movieId }) {
 export default Coroutine.create(MovieInfoLoader);
 ```
 
-## Usage
+## Documentation
 
 See [details page](https://react-coroutine.js.org/Details.html) for more.
 
