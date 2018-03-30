@@ -1,0 +1,23 @@
+{
+  "name": "timing-motion",
+  "version": "0.0.1",
+  "description": "Some stuff with React Motion",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "async-structure": "~0.1.0",
+    "react": "~16.3.0",
+    "react-coroutine": "~2.0.2",
+    "react-dom": "~16.3.0",
+    "react-motion": "~0.5.2"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "parcel-bundler": "^1.7.0"
+  },
+  "scripts": {
+    "start": "parcel public/index.html"
+  }
+}
