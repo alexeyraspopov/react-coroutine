@@ -2,6 +2,7 @@
   "name": "search-form",
   "version": "0.0.1",
   "description": "Search functionality example with React Coroutine",
+  "license": "MIT",
   "main": "index.js",
   "dependencies": {
     "react": "~16.3.0",
@@ -9,26 +10,12 @@
     "react-dom": "~16.3.0"
   },
   "devDependencies": {
-    "babel-core": "~6.24.0",
-    "babel-loader": "~6.4.1",
-    "babel-preset-es2017": "~6.22.0",
-    "babel-preset-react": "~6.23.0",
-    "babel-preset-stage-2": "~6.22.0",
-    "http-server": "~0.9.0",
-    "uglify-js": "github:mishoo/uglifyjs2#harmony",
-    "webpack": "~2.3.1",
-    "webpack-dev-server": "~2.4.1"
-  },
-  "babel": {
-    "presets": [
-      "react",
-      "es2017",
-      "stage-2"
-    ]
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "parcel-bundler": "^1.7.0"
   },
   "scripts": {
-    "build": "webpack index.js bundle.js -p",
-    "serve": "http-server . -p 8080",
-    "start": "webpack-dev-server . -d"
+    "start": "parcel index.html"
   }
 }
