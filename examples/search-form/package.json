@@ -4,9 +4,9 @@
   "description": "Search functionality example with React Coroutine",
   "main": "index.js",
   "dependencies": {
-    "react": "~16.2.0",
-    "react-coroutine": "~2.0.0",
-    "react-dom": "~16.2.0"
+    "react": "~16.3.0",
+    "react-coroutine": "~2.0.2",
+    "react-dom": "~16.3.0"
   },
   "devDependencies": {
     "babel-core": "~6.24.0",
