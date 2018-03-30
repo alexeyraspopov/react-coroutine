@@ -16,6 +16,6 @@
     "parcel-bundler": "^1.7.0"
   },
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel public/index.html"
   }
 }
