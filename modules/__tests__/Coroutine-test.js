@@ -51,7 +51,7 @@ describe('Coroutine', () => {
   it('should render generator in async mode', async () => {
     function* render() {
       let a = yield Promise.resolve(1);
-      let b = yield 2;
+      let b = yield a + a;
       return <p>{a}, {b}</p>;
     }
 
