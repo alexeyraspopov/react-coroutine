@@ -32,7 +32,10 @@ the library from NPM [registry](https://www.npmjs.com/package/react-coroutine).
 
 ## Requirements
 
-If your project uses tools like [Babel](babeljs.io/) for code compilation, make sure your configuration supports `async`/`await` syntax (for async functions or generators). Plugins like [transform-async-to-generator](https://babeljs.io/docs/plugins/transform-async-to-generator/) and [transform-async-generator-functions](https://babeljs.io/docs/plugins/transform-async-generator-functions/) can help you with it and they might be already a part of presets your configuration uses.
+Using latest `babel-preset-env` you're able to use React Coroutine with async
+functions. This also covers current version of [Create React App][cra]. You may
+need to add `babel-preset-stage-3` to your setup to be able to use async
+generators.
 
 ## License
 
@@ -49,4 +52,5 @@ Amazing [awsm.css](https://igoradamenko.github.io/awsm.css) built by
 
 Code examples use [FiraCode](https://github.com/tonsky/FiraCode) font family.
 
+ [cra]: https://github.com/facebook/create-react-app
  [mit]: https://github.com/alexeyraspopov/react-coroutine/blob/master/LICENSE
