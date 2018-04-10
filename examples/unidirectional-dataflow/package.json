@@ -2,36 +2,23 @@
   "name": "unidirectional-dataflow",
   "version": "0.0.1",
   "description": "Unidirectional Dataflow pattern example with React Coroutine",
+  "license": "MIT",
   "main": "index.js",
   "dependencies": {
     "async-structure": "~0.1.0",
-    "create-react-context": "~0.2.1",
     "dataclass": "~1.1.1",
-    "react": "~16.2.0",
-    "react-coroutine": "~2.0.0",
-    "react-dom": "~16.2.0"
+    "react": "~16.3.1",
+    "react-coroutine": "~2.0.2",
+    "react-dom": "~16.3.1"
   },
   "devDependencies": {
-    "babel-core": "~6.24.0",
-    "babel-loader": "~6.4.1",
-    "babel-preset-es2017": "~6.22.0",
-    "babel-preset-react": "~6.23.0",
-    "babel-preset-stage-2": "~6.22.0",
-    "http-server": "~0.9.0",
-    "uglify-js": "github:mishoo/uglifyjs2#harmony",
-    "webpack": "~2.3.1",
-    "webpack-dev-server": "~2.4.1"
-  },
-  "babel": {
-    "presets": [
-      "react",
-      "es2017",
-      "stage-2"
-    ]
+    "babel-plugin-transform-class-properties": "~6.24.1",
+    "babel-plugin-transform-runtime": "~6.23.0",
+    "babel-preset-react": "~6.24.1",
+    "babel-preset-stage-3": "~6.24.1",
+    "parcel-bundler": "~1.7.0"
   },
   "scripts": {
-    "build": "webpack index.js bundle.js -p",
-    "serve": "http-server . -p 8080",
-    "start": "webpack-dev-server . -d"
+    "start": "parcel public/index.html"
   }
 }

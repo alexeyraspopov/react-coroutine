@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Coroutine from 'react-coroutine';
 import { AsyncQueue } from 'async-structure';
-import AppContext from './modules/AppContext';
-import AppStateRecord from './modules/AppStateRecord';
-import App from './modules/App';
-import Counter from './modules/Counter';
+import AppContext from './AppContext';
+import AppStateRecord from './AppStateRecord';
+import App from './App';
+import Counter from './Counter';
 
 let state = new AppStateRecord();
 let actions = new AsyncQueue();
