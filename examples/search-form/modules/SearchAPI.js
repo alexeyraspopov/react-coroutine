@@ -1,5 +1,3 @@
-import debounce from './Debounce';
-
 class Search {
   constructor() {
     /* The method is debounced for the sake of not doing unnecessary HTTP requests. */
@@ -18,6 +16,30 @@ class Search {
        on the screen. */
     throw new Error(await response.text());
   }
+}
+
+function debounce(fn, delay = 400) {
+  let timer = null;
+  let resolver = null;
+
+  function resolveFn(args) {
+    resolver(fn(...args));
+    timer = null;
+    resolver = null;
+  }
+
+  return function(...args) {
+    return new Promise(resolve => {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+        resolver = null;
+      }
+
+      timer = setTimeout(resolveFn, delay, args);
+      resolver = resolve;
+    });
+  };
 }
 
 export default new Search();
