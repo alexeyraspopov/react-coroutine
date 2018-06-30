@@ -4,4 +4,5 @@ This folder contains several examples of react-coroutine applied to different an
 
  * [Code Splitting](./code-splitting) — an example of coroutines usage for async data fetching and dynamic imports.
  * [Search Form](./search-form) — an example of progressive rendering with loading spinner and requests debouncing.
+ * [Timing Motion](./timing-motion) — an example of using React Coroutine and React Motion
  * [Unidirectional Dataflow](./unidirectional-dataflow) — an example of state management solution and unidirectional dataflow described without additional libraries.
