@@ -34,66 +34,6 @@ describe('Coroutine', () => {
     expect(tree.toJSON()).toEqual(second.toJSON());
   });
 
-  it('should render generator in sync mode', () => {
-    function* render() {
-      let a = yield 1;
-      let b = yield 2;
-      return <p>{a}, {b}</p>;
-    }
-
-    let TestComponent = Coroutine.create(render);
-    let tree = Renderer.create(<TestComponent />);
-
-    let result = Renderer.create(<p>{1}, {2}</p>);
-    expect(tree.toJSON()).toEqual(result.toJSON());
-  });
-
-  it('should render generator in async mode', async () => {
-    function* render() {
-      let a = yield Promise.resolve(1);
-      let b = yield a + a;
-      return <p>{a}, {b}</p>;
-    }
-
-    let TestComponent = Coroutine.create(render);
-    let tree = Renderer.create(<TestComponent />);
-
-    let result = await Renderer.create(<p>{1}, {2}</p>);
-    expect(tree.toJSON()).toEqual(result.toJSON());
-  });
-
-  it('should rethrow exceptions back to generator in async mode', () => {
-    function* render() {
-      try {
-        yield new Error('Boom');
-      } catch (error) {
-        return <p>{error.message}</p>;
-      }
-    }
-
-    let TestComponent = Coroutine.create(render);
-    let tree = Renderer.create(<TestComponent />);
-
-    let result = Renderer.create(<p>Boom</p>);
-    expect(tree.toJSON()).toEqual(result.toJSON());
-  });
-
-  it('should rethrow exceptions back to generator in async mode', async () => {
-    function* render() {
-      try {
-        yield Promise.reject(new Error('Boom'));
-      } catch (error) {
-        return <p>{error.message}</p>;
-      }
-    }
-
-    let TestComponent = Coroutine.create(render);
-    let tree = await Renderer.create(<TestComponent />);
-
-    let result = await Renderer.create(<p>Boom</p>);
-    expect(tree.toJSON()).toEqual(result.toJSON());
-  });
-
   it('should rethrow exceptions back to async generator', async () => {
     async function* render() {
       try {
@@ -178,3 +118,7 @@ describe('Coroutine', () => {
     expect(trap).not.toHaveBeenCalled();
   });
 });
+
+// describe('Placeholder', () => {
+//
+// });

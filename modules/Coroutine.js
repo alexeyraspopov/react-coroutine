@@ -18,19 +18,12 @@ function create(coroutine) {
       let shouldStop = () => this.iterator !== target;
       let updateView = view => this.setState({ view });
 
-      if (isPromiseLike(target)) {
+      if (target && typeof target.then === 'function') {
         // coroutine is Async Function, awaiting for the final result
         return target.then(value => shouldStop() || updateView(value));
       } else {
-        let step = this.iterator.next();
-
-        if (isPromiseLike(step)) {
-          // coroutine is Async Generator, rendering every time it yields
-          return resolveAsyncIterator(this.iterator, step, updateView, shouldStop);
-        } else {
-          // coroutine is Sync Generator, rendering the final result, awaiting yielded promises
-          return resolveSyncIterator(this.iterator, step, updateView, shouldStop);
-        }
+        // coroutine is Async Generator, rendering every time it yields
+        return resolveAsyncIterator(this.iterator, updateView, shouldStop);
       }
     }
 
@@ -56,41 +49,18 @@ function create(coroutine) {
   return Coroutine;
 }
 
-function resolveSyncIterator(i, step, cb, shouldStop) {
-  if (shouldStop()) {
-    return i.return();
-  }
-  if (!step.done) {
-    if (isPromiseLike(step.value)) {
-      return step.value
-        .then(data => resolveSyncIterator(i, i.next(data), cb, shouldStop))
-        .catch(error => resolveSyncIterator(i, i.throw(error), cb, shouldStop));
-    } else {
-      let isErrorLike = step.value instanceof Error;
-      let nextStep = isErrorLike ? i.throw(step.value) : i.next(step.value);
-      return resolveSyncIterator(i, nextStep, cb, shouldStop);
-    }
-  } else {
-    return cb(step.value);
-  }
-}
-
-function resolveAsyncIterator(i, step, cb, shouldStop) {
-  step.then(data => {
+function resolveAsyncIterator(iterator, done, shouldStop) {
+  return iterator.next().then(data => {
     if (shouldStop()) {
-      return i.return();
+      return iterator.return();
     }
 
     if (data.value !== undefined) {
-      cb(data.value);
+      done(data.value);
     }
 
-    return !data.done && resolveAsyncIterator(i, i.next(), cb, shouldStop);
+    return !data.done && resolveAsyncIterator(iterator, done, shouldStop);
   });
-}
-
-function isPromiseLike(target) {
-  return target && typeof target.then === 'function';
 }
 
 function arePropsEqual(a, b) {
