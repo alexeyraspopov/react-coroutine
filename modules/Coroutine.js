@@ -27,10 +27,6 @@ function create(coroutine) {
       }
     }
 
-    componentDidMount() {
-      return this.iterate(this.props);
-    }
-
     componentDidUpdate(prevProps) {
       return arePropsEqual(this.props, prevProps) || this.iterate(this.props);
     }
@@ -40,6 +36,10 @@ function create(coroutine) {
     }
 
     render() {
+      if (this.iterator == null) {
+        this.iterate(this.props);
+      }
+
       return this.state.view;
     }
   }
