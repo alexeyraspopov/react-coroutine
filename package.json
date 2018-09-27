@@ -24,7 +24,7 @@
     "iterator"
   ],
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --env=node --coverage",
     "ci": "sh scripts/integration.sh",
     "prepublish": "rollup --config scripts/rollup.config.js"
   },
