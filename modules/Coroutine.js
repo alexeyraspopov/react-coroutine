@@ -2,11 +2,11 @@ import { PureComponent } from 'react';
 
 export default { create };
 
-function create(coroutine) {
+function create(coroutine, placeholder) {
   class Coroutine extends PureComponent {
     constructor(props) {
       super(props);
-      this.state = { view: null };
+      this.state = { view: null, loading: true };
       this.iterator = null;
     }
 
@@ -16,7 +16,7 @@ function create(coroutine) {
       this.iterator = target;
 
       let shouldStop = () => this.iterator !== target;
-      let updateView = view => this.setState({ view });
+      let updateView = view => this.setState({ view, loading: false });
 
       if (target && typeof target.then === 'function') {
         // coroutine is Async Function, awaiting for the final result
@@ -39,6 +39,9 @@ function create(coroutine) {
       if (this.iterator == null) {
         this.iterate(this.props);
       }
+
+      // Render a placeholder if we have one
+      if(this.state.loading && placeholder) return placeholder(this.props)
 
       return this.state.view;
     }
