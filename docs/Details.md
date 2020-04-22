@@ -36,9 +36,9 @@ based on your opinion or particular task.
 
 When an async component is mounted, async function is executed. Initially,
 mounted component will render nothing, since async function hasn't been
-resolved or rejected yet. You can set your `placeholder` for the pending state,
-check Dependency Injection docs below. Once async function is resolved, the
-thing it returned will be rendered instead of placeholder. Whenever you pass
+resolved or rejected yet. You can set your `placeholder` for the pending state
+by passing a function as the second argument. Once async function is resolved,
+the thing it returned will be rendered instead of placeholder. Whenever you pass
 new props to an async component it will switch to pending state and execute
 async function again.
 
